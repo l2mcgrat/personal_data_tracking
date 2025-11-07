@@ -16,6 +16,8 @@ from windows.meditating_window import MeditatingWindow
 from windows.music_window import MusicWindow
 from windows.gaming_window import GamingWindow
 from windows.texting_calling_window import TextingCallingWindow
+from windows.socializing_window import SocializingWindow
+
 
 from windows.dummy_window import DummyWindow
 
@@ -54,7 +56,7 @@ class CategorySelector:
             "Music": MusicWindow,
             "Gaming": GamingWindow,
             "Messaging/Calling": TextingCallingWindow,
-            "Socializing": DummyWindow,
+            "Socializing": SocializingWindow,
             "Eating": DummyWindow,
             "Media": DummyWindow
         }
