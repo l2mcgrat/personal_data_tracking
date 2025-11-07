@@ -7,7 +7,16 @@ from windows.cooking_window import CookingWindow
 from windows.workouts_window import WorkoutsWindow
 from windows.learning_window import LearningWindow
 from windows.driving_window import DrivingWindow
-# Add dummy imports for other categories
+from windows.leetcode_window import LeetcodeWindow
+from windows.coding_projects_window import CodingProjectsWindow
+from windows.career_prep_window import CareerPrepWindow
+
+from windows.sleep_window import SleepWindow
+from windows.meditating_window import MeditatingWindow
+from windows.music_window import MusicWindow
+from windows.gaming_window import GamingWindow
+from windows.texting_calling_window import TextingCallingWindow
+
 from windows.dummy_window import DummyWindow
 
 class CategorySelector:
@@ -36,16 +45,15 @@ class CategorySelector:
             "Workouts": WorkoutsWindow,
             "Learning": LearningWindow,
             "Driving": DrivingWindow,
-            "Leetcode": DummyWindow,
-            "Coding Projects": DummyWindow,
-            "Career Prep": DummyWindow,
+            "Leetcode": LeetcodeWindow,
+            "Coding Projects": CodingProjectsWindow,
+            "Career Prep": CareerPrepWindow,
             "Miscellaneous": DummyWindow,
-            "Sleep": DummyWindow,
-            "Meditating": DummyWindow,
-            "Music": DummyWindow,
-            "Gaming": DummyWindow,
-            "Drugs": DummyWindow,
-            "Messaging/Calling": DummyWindow,
+            "Sleep": SleepWindow,
+            "Meditating": MeditatingWindow,
+            "Music": MusicWindow,
+            "Gaming": GamingWindow,
+            "Messaging/Calling": TextingCallingWindow,
             "Socializing": DummyWindow,
             "Eating": DummyWindow,
             "Media": DummyWindow
