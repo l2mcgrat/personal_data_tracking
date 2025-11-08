@@ -10,14 +10,15 @@ from windows.driving_window import DrivingWindow
 from windows.leetcode_window import LeetcodeWindow
 from windows.coding_projects_window import CodingProjectsWindow
 from windows.career_prep_window import CareerPrepWindow
-
 from windows.sleep_window import SleepWindow
 from windows.meditating_window import MeditatingWindow
 from windows.music_window import MusicWindow
 from windows.gaming_window import GamingWindow
 from windows.texting_calling_window import TextingCallingWindow
 from windows.socializing_window import SocializingWindow
-
+from windows.eating_window import EatingWindow
+from windows.media_window import MediaWindow
+from windows.miscellaneous_window import MiscellaneousWindow
 
 from windows.dummy_window import DummyWindow
 
@@ -50,15 +51,15 @@ class CategorySelector:
             "Leetcode": LeetcodeWindow,
             "Coding Projects": CodingProjectsWindow,
             "Career Prep": CareerPrepWindow,
-            "Miscellaneous": DummyWindow,
+            "Miscellaneous": MiscellaneousWindow,
             "Sleep": SleepWindow,
             "Meditating": MeditatingWindow,
             "Music": MusicWindow,
             "Gaming": GamingWindow,
             "Messaging/Calling": TextingCallingWindow,
             "Socializing": SocializingWindow,
-            "Eating": DummyWindow,
-            "Media": DummyWindow
+            "Eating": EatingWindow,
+            "Media": MediaWindow
         }
 
         # Split into breakdown and rebuild categories
@@ -100,8 +101,7 @@ class CategorySelector:
             bd=5,
             activebackground="#388E3C",
             activeforeground="white",
-            command=self.submit
-        )
+            command=self.submit)
         submit_btn.pack(pady=30)
 
     def submit(self):
