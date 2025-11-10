@@ -1,5 +1,9 @@
 
 import tkinter as tk
+import csv
+from datetime import date, timedelta
+from tkcalendar import DateEntry
+import os
 
 # Import all your window classes here
 from windows.work_day_window import WorkDayWindow
@@ -122,9 +126,56 @@ class CategorySelector:
         print(f"{name} returned:", data)
         self.open_windows -= 1
         print(f"Remaining open windows: {self.open_windows}")
+    
+        # Step 1: Get selected date from data (or default to today)
+        selected_date = data.get("Date", date.today().isoformat())
+    
+        # Step 2: Flatten nested data
+        flat_data = {"Date": selected_date}
+        for section, values in data.items():
+            if section == "Date":
+                continue
+            if isinstance(values, dict):
+                for key, value in values.items():
+                    flat_data[f"{section} - {key}"] = value
+            else:
+                flat_data[section] = values
+    
+        # Step 3: Prepare CSV file
+        filename = f"{name}.csv"
+        rows = []
+    
+        # Step 4: Load existing data if file exists
+        if os.path.isfile(filename):
+            with open(filename, "r", newline="", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                fieldnames = reader.fieldnames or flat_data.keys()
+                for row in reader:
+                    rows.append(row)
+        else:
+            fieldnames = flat_data.keys()
+    
+        # Step 5: Replace row if date matches, else append
+        updated = False
+        for i, row in enumerate(rows):
+            if row.get("Date") == selected_date:
+                rows[i] = flat_data
+                updated = True
+                break
+        if not updated:
+            rows.append(flat_data)
+    
+        # Step 6: Write updated data back to file
+        with open(filename, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+    
+        # Step 7: Exit if all windows are closed
         if self.open_windows == 0:
             print("All windows closed. Exiting app.")
             self.root.quit()
+
 
 # Run the app
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
-
 import tkinter as tk
 from tkinter import messagebox
+from tkcalendar import DateEntry
+from datetime import date
 
 class MediaWindow:
     def __init__(self, master, callback):
@@ -49,6 +50,26 @@ class MediaWindow:
             activeforeground="darkgreen",
             command=self.submit
         ).pack(side="right")
+
+        # Date picker
+        date_frame = tk.Frame(self.top)
+        date_frame.pack(pady=5)
+
+        tk.Label(date_frame, text="Select Date:", font=("Helvetica", 14)).pack(side="left", padx=5)
+
+        self.date_picker = DateEntry(
+            date_frame,
+            width=12,
+            font=("Helvetica", 14),
+            background="darkblue",
+            foreground="white",
+            borderwidth=2,
+            year=date.today().year,
+            month=date.today().month,
+            day=date.today().day,
+            date_pattern="yyyy-mm-dd"
+        )
+        self.date_picker.pack(side="left", padx=5)
 
         # Entry area
         self.grid_frame = tk.Frame(self.top)
@@ -146,7 +167,13 @@ class MediaWindow:
         self.series_count -= 1
 
     def submit(self):
-        result = {"YouTube": {}, "Anime": {}, "Series": {}}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {
+            "Date": selected_date,
+            "YouTube": {},
+            "Anime": {},
+            "Series": {}
+        }
 
         def validate_and_store(entries_list, label_prefix, target_dict):
             for i, entries in enumerate(entries_list):
@@ -177,6 +204,7 @@ class MediaWindow:
 
         self.callback("Media", result)
         self.top.destroy()
+
 
 
 
