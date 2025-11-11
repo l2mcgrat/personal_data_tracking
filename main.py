@@ -185,39 +185,77 @@ class CategorySelector:
         if self.open_windows == 0:
             print("All windows closed. Generating analytics report...")
             #generate_analytics_report()
-            
+            consolidate_data()
             print("Report saved to data/reports/analytics_report.pdf")
             self.root.quit()
 
+def consolidate_data():
+    master_rows = []
+    data_dir = "data"
 
-'''
-def generate_analytics_report():
-    pdf_path = "data/reports/analytics_report.pdf"
-    with PdfPages(pdf_path) as pdf:
-        for filename in os.listdir("data"):
-            if filename.endswith(".csv"):
-                filepath = os.path.join("data", filename)
-                try:
-                    df = pd.read_csv(filepath)
-                    if "Date" not in df.columns:
+    for filename in os.listdir(data_dir):
+        if not filename.endswith(".csv") or filename == "master_log.csv":
+            continue
+
+        filepath = os.path.join(data_dir, filename)
+        try:
+            df = pd.read_csv(filepath)
+            if "Date" not in df.columns:
+                continue
+            df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+
+            for _, row in df.iterrows():
+                date = row["Date"]
+                for col in df.columns:
+                    if col == "Date":
                         continue
-                    df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
-                    df = df.sort_values("Date")
+                    value = row[col]
+                    if pd.notna(value):
+                        parts = col.split(" - ")
+                        if len(parts) == 3:
+                            category, subtype, metric = parts
+                        elif len(parts) == 2:
+                            category, metric = parts
+                            subtype = "General"
+                        else:
+                            category = filename.replace(".csv", "")
+                            subtype = "General"
+                            metric = col
+                    
+                        # Try to unpack dictionary-like strings
+                        if isinstance(value, str) and value.startswith("{") and value.endswith("}"):
+                            try:
+                                parsed = eval(value)  # Safe here because it's your own data
+                                if isinstance(parsed, dict):
+                                    for k, v in parsed.items():
+                                        master_rows.append({
+                                            "Date": date,
+                                            "Category": category,
+                                            "Subtype": subtype,
+                                            "Metric": f"{metric} - {k}",
+                                            "Value": v,
+                                            "Source": filename
+                                        })
+                                    continue  # Skip the original dict row
+                            except Exception:
+                                pass  # Fall back to storing as-is if parsing fails
+                    
+                        master_rows.append({
+                            "Date": date,
+                            "Category": category,
+                            "Subtype": subtype,
+                            "Metric": metric,
+                            "Value": value,
+                            "Source": filename
+                        })
+                    
+        except Exception as e:
+            print(f"Error consolidating {filename}: {e}")
 
-                    # Plot all numeric columns over time
-                    numeric_cols = df.select_dtypes(include="number").columns
-                    for col in numeric_cols:
-                        plt.figure(figsize=(8, 4))
-                        plt.plot(df["Date"], df[col], marker="o")
-                        plt.title(f"{filename.replace('.csv','')} - {col}")
-                        plt.xlabel("Date")
-                        plt.ylabel(col)
-                        plt.tight_layout()
-                        pdf.savefig()
-                        plt.close()
-                except Exception as e:
-                    print(f"Error processing {filename}: {e}")
-'''
+    master_df = pd.DataFrame(master_rows)
+    master_df.sort_values("Date", inplace=True)
+    master_df.to_csv(os.path.join(data_dir, "master_log.csv"), index=False)
+    print("Master log saved to data/master_log.csv")
 
 # Run the app
 if __name__ == "__main__":

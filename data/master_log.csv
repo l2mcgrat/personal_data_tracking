@@ -1,0 +1,133 @@
+Date,Category,Subtype,Metric,Value,Source
+2025-11-09,YouTube,General,YouTube A - title,Most Agreesive Pitchers,Media.csv
+2025-11-09,Nap,General,start,10:00,Sleep.csv
+2025-11-09,Main Sleep,General,quality,8,Sleep.csv
+2025-11-09,Main Sleep,General,duration,400,Sleep.csv
+2025-11-09,Main Sleep,General,end,08:30,Sleep.csv
+2025-11-09,Main Sleep,General,start,01:50,Sleep.csv
+2025-11-09,Fixed,General,Teeth Brushed,1,Miscellaneous.csv
+2025-11-09,Fixed,General,Showers,1,Miscellaneous.csv
+2025-11-09,Fixed,General,Liters of Water Drank,10,Miscellaneous.csv
+2025-11-09,Drugs,Drug A,name,Pregabalin,Miscellaneous.csv
+2025-11-09,Drugs,Drug A,notes,Good,Miscellaneous.csv
+2025-11-09,Drugs,Drug B,name,Seroquil (Night Time),Miscellaneous.csv
+2025-11-09,Drugs,Drug B,dosage,100,Miscellaneous.csv
+2025-11-09,Drugs,Drug B,notes,Good,Miscellaneous.csv
+2025-11-09,Project A,General,duration,0,Coding Projects.csv
+2025-11-09,Person A,General,context,Stuff I Already Talked About,Messaging_Calling.csv
+2025-11-09,Person A,General,duration,10,Messaging_Calling.csv
+2025-11-09,Person A,General,person,Mom,Messaging_Calling.csv
+2025-11-09,Nap,General,end,17:00,Sleep.csv
+2025-11-09,Nap,General,duration,420.0,Sleep.csv
+2025-11-09,Drugs,Drug A,dosage,300,Miscellaneous.csv
+2025-11-09,Nap,General,quality,7.0,Sleep.csv
+2025-11-09,YouTube,General,YouTube C - title,Why Ohtani is Worth $700 Million,Media.csv
+2025-11-09,YouTube,General,YouTube D - title,How Yamamoto Studied His Way to $325 Million,Media.csv
+2025-11-09,YouTube,General,YouTube D - duration,13,Media.csv
+2025-11-09,YouTube,General,YouTube D - rating,83,Media.csv
+2025-11-09,Anime,General,Anime A - title,One Punch Man S3,Media.csv
+2025-11-09,YouTube,General,YouTube B - rating,81,Media.csv
+2025-11-09,YouTube,General,YouTube B - duration,22,Media.csv
+2025-11-09,YouTube,General,YouTube C - rating,95,Media.csv
+2025-11-09,YouTube,General,YouTube C - duration,14,Media.csv
+2025-11-09,YouTube,General,YouTube A - rating,70,Media.csv
+2025-11-09,Anime,General,Anime A - duration,22,Media.csv
+2025-11-09,Anime,General,Anime A - rating,55,Media.csv
+2025-11-09,Anime,General,Anime B - title,Gachiakuta,Media.csv
+2025-11-09,Anime,General,Anime B - duration,22,Media.csv
+2025-11-09,Anime,General,Anime B - rating,67,Media.csv
+2025-11-09,YouTube,General,YouTube A - duration,25,Media.csv
+2025-11-09,YouTube,General,YouTube B - title,Atrioc Most Agressive Pitchers,Media.csv
+2025-11-10,Main Sleep,General,start,1:50,Sleep.csv
+2025-11-10,Meals,Meal A,carbs,30,Eating.csv
+2025-11-10,Cooking,General,minutes,0,Cooking.csv
+2025-11-10,Meals,Meal A,fats,31,Eating.csv
+2025-11-10,Meals,Meal A,type,English Muffin with Egg and Sausage,Eating.csv
+2025-11-10,Game A,General,rating,0,Gaming.csv
+2025-11-10,Applications,General,count,0,Career Prep.csv
+2025-11-10,Song A,General,rating,0,Music.csv
+2025-11-10,Song A,General,duration,0,Music.csv
+2025-11-10,Meals,Meal A,proteins,20,Eating.csv
+2025-11-10,Interview A,General,duration,0,Career Prep.csv
+2025-11-10,Meditation A,General,duration,0,Meditating.csv
+2025-11-10,Problem A,General,duration,0,Leetcode.csv
+2025-11-10,Game A,General,duration,0,Gaming.csv
+2025-11-10,Meals,Meal B,type,Pork on Bun with Sauerkraut,Eating.csv
+2025-11-10,Snacks,Snack A,type,Popcord,Eating.csv
+2025-11-10,Meals,Meal B,fats,48,Eating.csv
+2025-11-10,Main Sleep,General,end,8:30,Sleep.csv
+2025-11-10,Work Day,General,projects,0,Work Day.csv
+2025-11-10,Work Day,General,walking,0,Work Day.csv
+2025-11-10,Work Day,General,meetings,0,Work Day.csv
+2025-11-10,Work Day,General,worked,0,Work Day.csv
+2025-11-10,Psychology,General,concept,Planning,Learning.csv
+2025-11-10,Person C,General,context,Chess Planning,Messaging_Calling.csv
+2025-11-10,Psychology,General,topic,Relapse Prevention,Learning.csv
+2025-11-10,Psychology,General,duration,60,Learning.csv
+2025-11-10,Snacks,Snack A,proteins,14,Eating.csv
+2025-11-10,Snacks,Snack A,fats,34,Eating.csv
+2025-11-10,Snacks,Snack A,carbs,100,Eating.csv
+2025-11-10,Meals,Meal C,proteins,70,Eating.csv
+2025-11-10,Meals,Meal C,fats,40,Eating.csv
+2025-11-10,Meals,Meal C,carbs,100,Eating.csv
+2025-11-10,Meals,Meal C,type,Asian Chicken and Rice,Eating.csv
+2025-11-10,Meals,Meal B,proteins,40,Eating.csv
+2025-11-10,Meals,Meal B,carbs,40,Eating.csv
+2025-11-10,Person C,General,duration,1.0,Messaging_Calling.csv
+2025-11-10,Triceps,General,rep_min,8.0,Workouts.csv
+2025-11-10,Person B,General,context,Chit Chat,Messaging_Calling.csv
+2025-11-10,Drugs,Drug B,name,Seroquil (Night Time),Miscellaneous.csv
+2025-11-10,Drugs,Drug A,notes,Good,Miscellaneous.csv
+2025-11-10,Drugs,Drug A,dosage,300,Miscellaneous.csv
+2025-11-10,Drugs,Drug A,name,Pregabalin,Miscellaneous.csv
+2025-11-10,Fixed,General,Liters of Water Drank,5,Miscellaneous.csv
+2025-11-10,Fixed,General,Showers,1,Miscellaneous.csv
+2025-11-10,Fixed,General,Teeth Brushed,1,Miscellaneous.csv
+2025-11-10,Anime,General,Anime A - rating,92,Media.csv
+2025-11-10,Anime,General,Anime A - duration,88,Media.csv
+2025-11-10,Anime,General,Anime A - title,Kurokos BasketBall,Media.csv
+2025-11-10,Person C,General,person,Katee,Messaging_Calling.csv
+2025-11-10,YouTube,General,YouTube D - rating,80,Media.csv
+2025-11-10,YouTube,General,YouTube D - title,Pro Sports Have a Big Problem,Media.csv
+2025-11-10,YouTube,General,YouTube C - rating,60,Media.csv
+2025-11-10,YouTube,General,YouTube C - duration,21,Media.csv
+2025-11-10,YouTube,General,YouTube C - title,Felony Murder: LWT,Media.csv
+2025-11-10,YouTube,General,YouTube B - rating,40,Media.csv
+2025-11-10,YouTube,General,YouTube B - duration,15,Media.csv
+2025-11-10,YouTube,General,YouTube B - title,Shorts,Media.csv
+2025-11-10,YouTube,General,YouTube A - rating,55,Media.csv
+2025-11-10,YouTube,General,YouTube A - duration,13,Media.csv
+2025-11-10,YouTube,General,YouTube A - title,How 1 Man Fooled 5 Women on Survivor,Media.csv
+2025-11-10,YouTube,General,YouTube D - duration,43,Media.csv
+2025-11-10,Drugs,Drug B,notes,Good,Miscellaneous.csv
+2025-11-10,Drugs,Drug B,dosage,100,Miscellaneous.csv
+2025-11-10,Plan A,General,duration,40,Socializing.csv
+2025-11-10,Person B,General,duration,1.0,Messaging_Calling.csv
+2025-11-10,Person B,General,person,Ryan,Messaging_Calling.csv
+2025-11-10,Person A,General,context,Politics/Catchup,Messaging_Calling.csv
+2025-11-10,Person A,General,duration,5,Messaging_Calling.csv
+2025-11-10,Person A,General,person,Dani,Messaging_Calling.csv
+2025-11-10,Drive A,General,distance,0,Driving.csv
+2025-11-10,Plan A,General,friends,Dusty,Socializing.csv
+2025-11-10,Triceps,General,rep_max,15.0,Workouts.csv
+2025-11-10,Main Sleep,General,duration,400,Sleep.csv
+2025-11-10,Triceps,General,sets,12.0,Workouts.csv
+2025-11-10,Drive A,General,duration,0,Driving.csv
+2025-11-10,Chest,General,rep_max,15.0,Workouts.csv
+2025-11-10,Plan A,General,activity,Chess,Socializing.csv
+2025-11-10,Project A,General,name,personal_data_tracking,Coding Projects.csv
+2025-11-10,Project A,General,duration,150,Coding Projects.csv
+2025-11-10,Triceps,General,exercises,3.0,Workouts.csv
+2025-11-10,Project A,General,changes,Added Date Selector and Modified Code to Update .csvs if data already entered for that date. Add row if data not entered.,Coding Projects.csv
+2025-11-10,Project A,General,fixes,More Date Entry Field to Top Center.,Coding Projects.csv
+2025-11-10,Chest,General,exercises,4.0,Workouts.csv
+2025-11-10,Chest,General,sets,19.0,Workouts.csv
+2025-11-10,Chest,General,rep_min,4.0,Workouts.csv
+2025-11-10,Main Sleep,General,quality,7,Sleep.csv
+2025-11-11,Person A,General,duration,28,Messaging_Calling.csv
+2025-11-11,Person A,General,person,Catherine Germaine,Messaging_Calling.csv
+2025-11-11,Main Sleep,General,start,1:20,Sleep.csv
+2025-11-11,Main Sleep,General,end,8:30,Sleep.csv
+2025-11-11,Main Sleep,General,duration,430,Sleep.csv
+2025-11-11,Main Sleep,General,quality,9,Sleep.csv
+2025-11-11,Person A,General,context,LTD Return to Work,Messaging_Calling.csv
