@@ -166,7 +166,8 @@ class MiscellaneousWindow:
         self.other_count -= 1
 
     def submit(self):
-        result = {
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date,
             "Fixed": {},
             "Drugs": {},
             "Other": {}

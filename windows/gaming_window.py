@@ -88,6 +88,26 @@ class GamingWindow:
             activeforeground="white",
             command=self.remove_game_row
         ).pack(side="right")
+        
+        # Date picker
+        date_frame = tk.Frame(self.top)
+        date_frame.pack(pady=5)
+        
+        tk.Label(date_frame, text="Select Date:", font=("Helvetica", 14)).pack(side="left", padx=5)
+        
+        self.date_picker = DateEntry(
+            date_frame,
+            width=12,
+            font=("Helvetica", 14),
+            background="darkblue",
+            foreground="white",
+            borderwidth=2,
+            year=date.today().year,
+            month=date.today().month,
+            day=date.today().day,
+            date_pattern="yyyy-mm-dd"
+        )
+        self.date_picker.pack(side="left", padx=5)
 
     def add_game_row(self):
         row = self.game_count * 2
@@ -121,7 +141,8 @@ class GamingWindow:
         self.game_count -= 1
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
         for i, entries in enumerate(self.game_entries):
             label = f"Game {chr(65 + i)}"
             result[label] = {}

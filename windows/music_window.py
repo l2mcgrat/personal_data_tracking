@@ -140,7 +140,8 @@ class MusicWindow:
         self.song_count -= 1
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
         for i, entries in enumerate(self.song_entries):
             label = f"Song {chr(65 + i)}"
             result[label] = {}

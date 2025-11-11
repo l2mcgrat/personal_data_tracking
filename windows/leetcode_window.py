@@ -143,7 +143,8 @@ class LeetcodeWindow:
         self.problem_count -= 1
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
         for i, entries in enumerate(self.problem_entries):
             label = f"Problem {chr(65 + i)}"
             result[label] = {}

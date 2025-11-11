@@ -1,4 +1,7 @@
 
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 import tkinter as tk
 import csv
 from datetime import date, timedelta
@@ -60,7 +63,7 @@ class CategorySelector:
             "Meditating": MeditatingWindow,
             "Music": MusicWindow,
             "Gaming": GamingWindow,
-            "Messaging_Calling": TextingCallingWindow,
+            "Messaging/Calling": TextingCallingWindow,
             "Socializing": SocializingWindow,
             "Eating": EatingWindow,
             "Media": MediaWindow
@@ -131,13 +134,18 @@ class CategorySelector:
         selected_date = data.get("Date", date.today().isoformat())
     
         # Step 2: Flatten nested data
-        flat_data = {"Date": selected_date}
+        flat_data = {"Date": data.get("Date", date.today().isoformat())}
+        
         for section, values in data.items():
             if section == "Date":
                 continue
             if isinstance(values, dict):
-                for key, value in values.items():
-                    flat_data[f"{section} - {key}"] = value
+                for sublabel, subvalues in values.items():
+                    if isinstance(subvalues, dict):
+                        for key, value in subvalues.items():
+                            flat_data[f"{section} - {sublabel} - {key}"] = value
+                    else:
+                        flat_data[f"{section} - {sublabel}"] = subvalues
             else:
                 flat_data[section] = values
     
@@ -149,7 +157,9 @@ class CategorySelector:
         if os.path.isfile(filename):
             with open(filename, "r", newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
-                fieldnames = reader.fieldnames or flat_data.keys()
+                existing_fieldnames = reader.fieldnames or []
+                new_fieldnames = list(flat_data.keys())
+                fieldnames = list(dict.fromkeys(existing_fieldnames + new_fieldnames))
                 for row in reader:
                     rows.append(row)
         else:
@@ -173,9 +183,41 @@ class CategorySelector:
     
         # Step 7: Exit if all windows are closed
         if self.open_windows == 0:
-            print("All windows closed. Exiting app.")
+            print("All windows closed. Generating analytics report...")
+            #generate_analytics_report()
+            
+            print("Report saved to data/reports/analytics_report.pdf")
             self.root.quit()
 
+
+'''
+def generate_analytics_report():
+    pdf_path = "data/reports/analytics_report.pdf"
+    with PdfPages(pdf_path) as pdf:
+        for filename in os.listdir("data"):
+            if filename.endswith(".csv"):
+                filepath = os.path.join("data", filename)
+                try:
+                    df = pd.read_csv(filepath)
+                    if "Date" not in df.columns:
+                        continue
+                    df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+                    df = df.sort_values("Date")
+
+                    # Plot all numeric columns over time
+                    numeric_cols = df.select_dtypes(include="number").columns
+                    for col in numeric_cols:
+                        plt.figure(figsize=(8, 4))
+                        plt.plot(df["Date"], df[col], marker="o")
+                        plt.title(f"{filename.replace('.csv','')} - {col}")
+                        plt.xlabel("Date")
+                        plt.ylabel(col)
+                        plt.tight_layout()
+                        pdf.savefig()
+                        plt.close()
+                except Exception as e:
+                    print(f"Error processing {filename}: {e}")
+'''
 
 # Run the app
 if __name__ == "__main__":

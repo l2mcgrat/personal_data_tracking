@@ -80,7 +80,8 @@ class WorkDayWindow:
         ).pack(pady=30)
 
     def submit(self):
-        data = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        data = {"Date": selected_date}
         for key, entry in self.entries.items():
             value = entry.get().strip()
             if not value.isdigit():

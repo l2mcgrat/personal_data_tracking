@@ -106,7 +106,11 @@ class SleepWindow:
             self.nap_entries = {}
 
     def submit(self):
-        result = {"Main Sleep": {}}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {
+            "Date": selected_date,
+            "Main Sleep": {}
+        }
         for key, entry in self.sleep_entries.items():
             value = entry.get().strip()
             if key in ["duration", "quality"] and not value.isdigit():

@@ -98,11 +98,13 @@ class CookingWindow:
             self.meal_counts[meal_name] = 1
 
         # Return data to main
-        self.callback("Cooking", {
-            "minutes": minutes,
-            "meal": meal_name,
-            "meal_counts": self.meal_counts.copy()
-        })
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {
+                "Date": selected_date,
+                "minutes": minutes,
+                "meal": meal_name
+                }
+        self.callback("Cooking", result)
 
         self.top.destroy()
 

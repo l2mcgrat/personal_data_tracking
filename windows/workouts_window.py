@@ -119,7 +119,8 @@ class WorkoutsWindow:
             add_entry(3, "Sport", "type", width=8)
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
         for name, widgets in self.entry_widgets.items():
             if not self.vars[name].get():
                 continue
@@ -139,9 +140,3 @@ class WorkoutsWindow:
 
         self.callback("Workouts", result)
         self.top.destroy()
-
-
-
-
-
-

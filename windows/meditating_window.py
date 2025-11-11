@@ -141,7 +141,8 @@ class MeditatingWindow:
         self.meditation_count -= 1
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
         for i, entries in enumerate(self.meditation_entries):
             label = f"Meditation {chr(65 + i)}"
             result[label] = {}

@@ -159,7 +159,8 @@ class EatingWindow:
         self.snack_count -= 1
 
     def submit(self):
-        result = {"Meals": {}, "Snacks": {}}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date, "Meals": {}, "Snacks": {}}
 
         def validate(entries_list, label_prefix, target_dict):
             for i, entries in enumerate(entries_list):

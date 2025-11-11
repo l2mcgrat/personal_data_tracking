@@ -187,7 +187,8 @@ class CareerPrepWindow:
             self.linkedin_entries = {}
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
 
         # Interviews
         for i, entries in enumerate(self.interview_entries):

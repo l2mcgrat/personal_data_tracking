@@ -140,7 +140,8 @@ class SocializingWindow:
         self.plan_count -= 1
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
         for i, entries in enumerate(self.plan_entries):
             label = f"Plan {chr(65 + i)}"
             result[label] = {}

@@ -111,7 +111,8 @@ class LearningWindow:
         add_entry(5, "Concept Learned", "concept", width=20)
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
         for subject, widgets in self.entry_widgets.items():
             if not self.vars[subject].get():
                 continue
@@ -131,10 +132,3 @@ class LearningWindow:
 
         self.callback("Learning", result)
         self.top.destroy()
-
-
-
-
-
-
-

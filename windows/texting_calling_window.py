@@ -140,7 +140,8 @@ class TextingCallingWindow:
         self.person_count -= 1
 
     def submit(self):
-        result = {}
+        selected_date = self.date_picker.get_date().isoformat()
+        result = {"Date": selected_date}
         for i, entries in enumerate(self.person_entries):
             label = f"Person {chr(65 + i)}"
             result[label] = {}
@@ -154,5 +155,5 @@ class TextingCallingWindow:
                 else:
                     result[label][key] = value if value else "N/A"
 
-        self.callback("Messaging/Calling", result)
+        self.callback("Messaging_Calling", result)
         self.top.destroy()
