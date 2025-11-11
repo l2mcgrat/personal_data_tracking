@@ -1,4 +1,6 @@
 
+from tkcalendar import DateEntry
+from datetime import date
 import tkinter as tk
 from tkinter import messagebox
 
@@ -86,6 +88,26 @@ class CodingProjectsWindow:
             activeforeground="white",
             command=self.remove_project_row
         ).pack(side="right")
+        
+        # Date picker
+        date_frame = tk.Frame(self.top)
+        date_frame.pack(pady=5)
+        
+        tk.Label(date_frame, text="Select Date:", font=("Helvetica", 14)).pack(side="left", padx=5)
+        
+        self.date_picker = DateEntry(
+            date_frame,
+            width=12,
+            font=("Helvetica", 14),
+            background="darkblue",
+            foreground="white",
+            borderwidth=2,
+            year=date.today().year,
+            month=date.today().month,
+            day=date.today().day,
+            date_pattern="yyyy-mm-dd"
+        )
+        self.date_picker.pack(side="left", padx=5)
 
     def add_project_row(self):
         row = self.project_count * 2

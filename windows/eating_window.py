@@ -1,4 +1,6 @@
 
+from tkcalendar import DateEntry
+from datetime import date
 import tkinter as tk
 from tkinter import messagebox
 
@@ -64,6 +66,27 @@ class EatingWindow:
         self._add_button(button_frame, "Remove Meal", self.remove_meal_row, "#FF8A65", "red")
         self._add_button(button_frame, "Add Snack", self.add_snack_row, "#B39DDB", "purple")
         self._add_button(button_frame, "Remove Snack", self.remove_snack_row, "#CE93D8", "darkred")
+        
+        # Date picker
+        date_frame = tk.Frame(self.top)
+        date_frame.pack(pady=5)
+        
+        tk.Label(date_frame, text="Select Date:", font=("Helvetica", 14)).pack(side="left", padx=5)
+        
+        self.date_picker = DateEntry(
+            date_frame,
+            width=12,
+            font=("Helvetica", 14),
+            background="darkblue",
+            foreground="white",
+            borderwidth=2,
+            year=date.today().year,
+            month=date.today().month,
+            day=date.today().day,
+            date_pattern="yyyy-mm-dd"
+        )
+        self.date_picker.pack(side="left", padx=5)
+
 
     def _add_button(self, frame, text, command, bg, fg):
         tk.Button(

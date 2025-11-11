@@ -60,7 +60,7 @@ class CategorySelector:
             "Meditating": MeditatingWindow,
             "Music": MusicWindow,
             "Gaming": GamingWindow,
-            "Messaging/Calling": TextingCallingWindow,
+            "Messaging_Calling": TextingCallingWindow,
             "Socializing": SocializingWindow,
             "Eating": EatingWindow,
             "Media": MediaWindow
@@ -142,7 +142,7 @@ class CategorySelector:
                 flat_data[section] = values
     
         # Step 3: Prepare CSV file
-        filename = f"{name}.csv"
+        filename = os.path.join("data", f"{name}.csv")
         rows = []
     
         # Step 4: Load existing data if file exists

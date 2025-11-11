@@ -1,4 +1,6 @@
 
+from tkcalendar import DateEntry
+from datetime import date
 import tkinter as tk
 from tkinter import messagebox
 
@@ -62,6 +64,27 @@ class SleepWindow:
         # Nap entry placeholder
         self.nap_entries = {}
         self.nap_row = 2
+        
+        # Date picker
+        date_frame = tk.Frame(self.top)
+        date_frame.pack(pady=5)
+        
+        tk.Label(date_frame, text="Select Date:", font=("Helvetica", 14)).pack(side="left", padx=5)
+        
+        self.date_picker = DateEntry(
+            date_frame,
+            width=12,
+            font=("Helvetica", 14),
+            background="darkblue",
+            foreground="white",
+            borderwidth=2,
+            year=date.today().year,
+            month=date.today().month,
+            day=date.today().day,
+            date_pattern="yyyy-mm-dd"
+        )
+        self.date_picker.pack(side="left", padx=5)
+
 
     def _add_entry(self, frame, row, col, label, key, width, entry_dict):
         tk.Label(frame, text=label, font=("Helvetica", 15)).grid(row=row, column=col, sticky="w", padx=3)
