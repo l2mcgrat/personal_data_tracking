@@ -1,4 +1,5 @@
 
+from collections import defaultdict
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
@@ -6,7 +7,7 @@ import tkinter as tk
 import csv
 from datetime import date, timedelta
 from tkcalendar import DateEntry
-import os
+import os, string
 
 # Import all your window classes here
 from windows.work_day_window import WorkDayWindow
@@ -183,13 +184,13 @@ class CategorySelector:
     
         # Step 7: Exit if all windows are closed
         if self.open_windows == 0:
-            print("All windows closed. Generating analytics report...")
-            #generate_analytics_report()
+            print("All windows closed. Consolidating Data into one .csv file...")
             consolidate_data()
-            print("Report saved to data/reports/analytics_report.pdf")
             self.root.quit()
 
 def consolidate_data():
+    from collections import defaultdict
+
     master_rows = []
     data_dir = "data"
 
@@ -206,49 +207,77 @@ def consolidate_data():
 
             for _, row in df.iterrows():
                 date = row["Date"]
+
+                # Group related fields
+                grouped = defaultdict(dict)
                 for col in df.columns:
                     if col == "Date":
                         continue
                     value = row[col]
-                    if pd.notna(value):
-                        parts = col.split(" - ")
-                        if len(parts) == 3:
-                            category, subtype, metric = parts
-                        elif len(parts) == 2:
-                            category, metric = parts
-                            subtype = "General"
-                        else:
-                            category = filename.replace(".csv", "")
-                            subtype = "General"
-                            metric = col
+                    if pd.isna(value):
+                        continue
+
+                    parts = col.split(" - ")
+                    if len(parts) == 3:
+                        category, sublabel, metric = parts
+                        # normalize category
+                        if len(category) >= 2 and category[-2] == " " and category[-1] in string.ascii_uppercase[:23]:
+                            category = category[:-2]
+                        grouped[(category, sublabel)][metric] = value
                     
-                        # Try to unpack dictionary-like strings
+                    elif len(parts) == 2:
+                        category, metric = parts
+                        sublabel = "General"
+                        if len(category) >= 2 and category[-2] == " " and category[-1] in string.ascii_uppercase[:23]:
+                            category = category[:-2]
+                        grouped[(category, sublabel)][metric] = value
+                    
+                    else:
+                        # Always store the value even if the column name doesn't match expected pattern
+                        grouped[(filename.replace(".csv", ""), "General")][col] = value
+                    
+                print("Grouped:", grouped) 
+                # Flatten each group
+                for (category, sublabel), metrics in grouped.items():
+                    # Case 1: values are primitive (e.g., "Chicken Wrap")
+                    id_key = next((k for k in ["title", "type", "name", "purpose", "song", "person", "topic", "game", "friends"] if k in metrics), None)
+                    identifier = metrics.get(id_key, sublabel) if id_key else sublabel
+
+                    # Case 2: value itself is a dict string
+                    for metric, value in metrics.items():
                         if isinstance(value, str) and value.startswith("{") and value.endswith("}"):
                             try:
-                                parsed = eval(value)  # Safe here because it's your own data
+                                parsed = eval(value)
                                 if isinstance(parsed, dict):
+                                    id_key_inner = next((k for k in ["title", "type", "name"] if k in parsed), None)
+                                    identifier_inner = parsed.get(id_key_inner, identifier) if id_key_inner else identifier
                                     for k, v in parsed.items():
+                                        if k == id_key_inner:
+                                            continue
                                         master_rows.append({
                                             "Date": date,
                                             "Category": category,
-                                            "Subtype": subtype,
-                                            "Metric": f"{metric} - {k}",
+                                            "Subtype": identifier_inner,
+                                            "Metric": k,
                                             "Value": v,
                                             "Source": filename
                                         })
-                                    continue  # Skip the original dict row
+                                    continue
                             except Exception:
-                                pass  # Fall back to storing as-is if parsing fails
-                    
+                                pass
+
+                        # Normal primitive case
+                        if metric == id_key:
+                            continue  # skip repeating identifier
                         master_rows.append({
                             "Date": date,
                             "Category": category,
-                            "Subtype": subtype,
+                            "Subtype": identifier,
                             "Metric": metric,
                             "Value": value,
                             "Source": filename
                         })
-                    
+
         except Exception as e:
             print(f"Error consolidating {filename}: {e}")
 
@@ -256,6 +285,7 @@ def consolidate_data():
     master_df.sort_values("Date", inplace=True)
     master_df.to_csv(os.path.join(data_dir, "master_log.csv"), index=False)
     print("Master log saved to data/master_log.csv")
+
 
 # Run the app
 if __name__ == "__main__":
