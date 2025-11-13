@@ -1,7 +1,9 @@
 
 from collections import defaultdict
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 from matplotlib.backends.backend_pdf import PdfPages
 import tkinter as tk
 import csv
@@ -185,8 +187,20 @@ class CategorySelector:
         # Step 7: Exit if all windows are closed
         if self.open_windows == 0:
             print("All windows closed. Consolidating Data into one .csv file...")
-            consolidate_data()
+            function_caller()
             self.root.quit()
+
+def function_caller():
+    # Generate master_log.csv
+    consolidate_data()
+    
+    # Get data as dataframe object
+    master_df = pd.read_csv("data/master_log.csv")
+    master_df["Date"] = pd.to_datetime(master_df["Date"], errors="coerce")
+    
+    # Call visualization generator functions
+    visualize_daily_activity(master_df, output_dir="data/plots")
+    visualize_daily_meals(master_df, output_dir="data/plots")
 
 def consolidate_data():
     from collections import defaultdict
@@ -236,11 +250,11 @@ def consolidate_data():
                         # Always store the value even if the column name doesn't match expected pattern
                         grouped[(filename.replace(".csv", ""), "General")][col] = value
                     
-                print("Grouped:", grouped) 
+                #print("Grouped:", grouped) 
                 # Flatten each group
                 for (category, sublabel), metrics in grouped.items():
                     # Case 1: values are primitive (e.g., "Chicken Wrap")
-                    id_key = next((k for k in ["title", "type", "name", "purpose", "song", "person", "topic", "game", "friends"] if k in metrics), None)
+                    id_key = next((k for k in ["title", "type", "name", "purpose", "song", "person", "topic", "game", "friends", "reflection"] if k in metrics), None)
                     identifier = metrics.get(id_key, sublabel) if id_key else sublabel
 
                     # Case 2: value itself is a dict string
@@ -286,6 +300,71 @@ def consolidate_data():
     master_df.to_csv(os.path.join(data_dir, "master_log.csv"), index=False)
     print("Master log saved to data/master_log.csv")
 
+def visualize_daily_activity(master_df, output_dir="data/plots"):
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Group by day
+    for date, group in master_df.groupby(master_df["Date"].dt.date):
+        durations = (
+            group[group["Metric"].str.lower() == "duration"]
+            .assign(Value=pd.to_numeric(group[group["Metric"].str.lower() == "duration"]["Value"], errors="coerce"))
+            .groupby(group["Source"].str.replace(".csv", "", regex=False))["Value"]
+            .sum()
+        )
+
+        # Normalize to 1440 minutes
+        total = durations.sum()
+        print(total)
+        if total > 0:
+            durations = durations / total * 1440
+
+        plt.figure(figsize=(8, 8))
+        plt.pie(durations, labels=durations.index, autopct="%1.1f%%", startangle=90)
+        plt.title(f"Daily Activity Breakdown ({date})")
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, f"activity_pie_{date}.png"))
+        plt.close()
+
+def visualize_daily_meals(master_df, output_dir="data/plots"):
+    os.makedirs(output_dir, exist_ok=True)
+
+    for date, group in master_df.groupby(master_df["Date"].dt.date):
+        meals = group[group["Category"].str.lower() == "meals"]
+
+        if meals.empty:
+            continue
+
+        meal_data = {}
+        for subtype, meal_group in meals.groupby("Subtype"):
+            carbs = pd.to_numeric(meal_group.loc[meal_group["Metric"].str.lower() == "carbs", "Value"], errors="coerce").sum() * 4
+            protein = pd.to_numeric(meal_group.loc[meal_group["Metric"].str.lower() == "proteins", "Value"], errors="coerce").sum() * 4
+            fat = pd.to_numeric(meal_group.loc[meal_group["Metric"].str.lower() == "fats", "Value"], errors="coerce").sum() * 9
+            meal_data[subtype] = {"Carbs": carbs, "Protein": protein, "Fat": fat}
+
+        labels, values, colors = [], [], []
+        base_colors = {"Carbs": "saddlebrown", "Protein": "red", "Fat": "gold"}
+
+        # Generate shade variations per meal
+        meal_list = list(meal_data.keys())
+        shade_factors = np.linspace(0.6, 1.2, len(meal_list))  # noticeable range
+
+        for i, (meal, macros) in enumerate(meal_data.items()):
+            shade = shade_factors[i]
+            for macro, val in macros.items():
+                labels.append(f"{meal} - {macro}")
+                values.append(val)
+
+                # Apply shade variation
+                base_rgb = np.array(mcolors.to_rgb(base_colors[macro]))
+                shaded_rgb = np.clip(base_rgb * shade, 0, 1)
+                colors.append(shaded_rgb)
+
+        plt.figure(figsize=(8, 8))
+        plt.pie(values, labels=labels, colors=colors, autopct="%1.1f%%", startangle=90)
+        plt.title(f"Meal Breakdown ({date})")
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, f"meals_pie_{date}.png"))
+        plt.close()
 
 # Run the app
 if __name__ == "__main__":
