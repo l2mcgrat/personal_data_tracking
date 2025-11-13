@@ -190,6 +190,10 @@ class CategorySelector:
             function_caller()
             self.root.quit()
 
+from consolidate import consolidate_data
+from visualize import visualize_daily_reports
+import pandas as pd
+
 def function_caller():
     # Generate master_log.csv
     consolidate_data()
@@ -199,172 +203,7 @@ def function_caller():
     master_df["Date"] = pd.to_datetime(master_df["Date"], errors="coerce")
     
     # Call visualization generator functions
-    visualize_daily_activity(master_df, output_dir="data/plots")
-    visualize_daily_meals(master_df, output_dir="data/plots")
-
-def consolidate_data():
-    from collections import defaultdict
-
-    master_rows = []
-    data_dir = "data"
-
-    for filename in os.listdir(data_dir):
-        if not filename.endswith(".csv") or filename == "master_log.csv":
-            continue
-
-        filepath = os.path.join(data_dir, filename)
-        try:
-            df = pd.read_csv(filepath)
-            if "Date" not in df.columns:
-                continue
-            df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
-
-            for _, row in df.iterrows():
-                date = row["Date"]
-
-                # Group related fields
-                grouped = defaultdict(dict)
-                for col in df.columns:
-                    if col == "Date":
-                        continue
-                    value = row[col]
-                    if pd.isna(value):
-                        continue
-
-                    parts = col.split(" - ")
-                    if len(parts) == 3:
-                        category, sublabel, metric = parts
-                        # normalize category
-                        if len(category) >= 2 and category[-2] == " " and category[-1] in string.ascii_uppercase[:23]:
-                            category = category[:-2]
-                        grouped[(category, sublabel)][metric] = value
-                    
-                    elif len(parts) == 2:
-                        category, metric = parts
-                        sublabel = "General"
-                        if len(category) >= 2 and category[-2] == " " and category[-1] in string.ascii_uppercase[:23]:
-                            category = category[:-2]
-                        grouped[(category, sublabel)][metric] = value
-                    
-                    else:
-                        # Always store the value even if the column name doesn't match expected pattern
-                        grouped[(filename.replace(".csv", ""), "General")][col] = value
-                    
-                #print("Grouped:", grouped) 
-                # Flatten each group
-                for (category, sublabel), metrics in grouped.items():
-                    # Case 1: values are primitive (e.g., "Chicken Wrap")
-                    id_key = next((k for k in ["title", "type", "name", "purpose", "song", "person", "topic", "game", "friends", "reflection"] if k in metrics), None)
-                    identifier = metrics.get(id_key, sublabel) if id_key else sublabel
-
-                    # Case 2: value itself is a dict string
-                    for metric, value in metrics.items():
-                        if isinstance(value, str) and value.startswith("{") and value.endswith("}"):
-                            try:
-                                parsed = eval(value)
-                                if isinstance(parsed, dict):
-                                    id_key_inner = next((k for k in ["title", "type", "name"] if k in parsed), None)
-                                    identifier_inner = parsed.get(id_key_inner, identifier) if id_key_inner else identifier
-                                    for k, v in parsed.items():
-                                        if k == id_key_inner:
-                                            continue
-                                        master_rows.append({
-                                            "Date": date,
-                                            "Category": category,
-                                            "Subtype": identifier_inner,
-                                            "Metric": k,
-                                            "Value": v,
-                                            "Source": filename
-                                        })
-                                    continue
-                            except Exception:
-                                pass
-
-                        # Normal primitive case
-                        if metric == id_key:
-                            continue  # skip repeating identifier
-                        master_rows.append({
-                            "Date": date,
-                            "Category": category,
-                            "Subtype": identifier,
-                            "Metric": metric,
-                            "Value": value,
-                            "Source": filename
-                        })
-
-        except Exception as e:
-            print(f"Error consolidating {filename}: {e}")
-
-    master_df = pd.DataFrame(master_rows)
-    master_df.sort_values("Date", inplace=True)
-    master_df.to_csv(os.path.join(data_dir, "master_log.csv"), index=False)
-    print("Master log saved to data/master_log.csv")
-
-def visualize_daily_activity(master_df, output_dir="data/plots"):
-    os.makedirs(output_dir, exist_ok=True)
-
-    # Group by day
-    for date, group in master_df.groupby(master_df["Date"].dt.date):
-        durations = (
-            group[group["Metric"].str.lower() == "duration"]
-            .assign(Value=pd.to_numeric(group[group["Metric"].str.lower() == "duration"]["Value"], errors="coerce"))
-            .groupby(group["Source"].str.replace(".csv", "", regex=False))["Value"]
-            .sum()
-        )
-
-        # Normalize to 1440 minutes
-        total = durations.sum()
-        print(total)
-        if total > 0:
-            durations = durations / total * 1440
-
-        plt.figure(figsize=(8, 8))
-        plt.pie(durations, labels=durations.index, autopct="%1.1f%%", startangle=90)
-        plt.title(f"Daily Activity Breakdown ({date})")
-        plt.tight_layout()
-        plt.savefig(os.path.join(output_dir, f"activity_pie_{date}.png"))
-        plt.close()
-
-def visualize_daily_meals(master_df, output_dir="data/plots"):
-    os.makedirs(output_dir, exist_ok=True)
-
-    for date, group in master_df.groupby(master_df["Date"].dt.date):
-        meals = group[group["Category"].str.lower() == "meals"]
-
-        if meals.empty:
-            continue
-
-        meal_data = {}
-        for subtype, meal_group in meals.groupby("Subtype"):
-            carbs = pd.to_numeric(meal_group.loc[meal_group["Metric"].str.lower() == "carbs", "Value"], errors="coerce").sum() * 4
-            protein = pd.to_numeric(meal_group.loc[meal_group["Metric"].str.lower() == "proteins", "Value"], errors="coerce").sum() * 4
-            fat = pd.to_numeric(meal_group.loc[meal_group["Metric"].str.lower() == "fats", "Value"], errors="coerce").sum() * 9
-            meal_data[subtype] = {"Carbs": carbs, "Protein": protein, "Fat": fat}
-
-        labels, values, colors = [], [], []
-        base_colors = {"Carbs": "saddlebrown", "Protein": "red", "Fat": "gold"}
-
-        # Generate shade variations per meal
-        meal_list = list(meal_data.keys())
-        shade_factors = np.linspace(0.6, 1.2, len(meal_list))  # noticeable range
-
-        for i, (meal, macros) in enumerate(meal_data.items()):
-            shade = shade_factors[i]
-            for macro, val in macros.items():
-                labels.append(f"{meal} - {macro}")
-                values.append(val)
-
-                # Apply shade variation
-                base_rgb = np.array(mcolors.to_rgb(base_colors[macro]))
-                shaded_rgb = np.clip(base_rgb * shade, 0, 1)
-                colors.append(shaded_rgb)
-
-        plt.figure(figsize=(8, 8))
-        plt.pie(values, labels=labels, colors=colors, autopct="%1.1f%%", startangle=90)
-        plt.title(f"Meal Breakdown ({date})")
-        plt.tight_layout()
-        plt.savefig(os.path.join(output_dir, f"meals_pie_{date}.png"))
-        plt.close()
+    visualize_daily_reports(master_df)
 
 # Run the app
 if __name__ == "__main__":
