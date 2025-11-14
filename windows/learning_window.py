@@ -20,24 +20,18 @@ class LearningWindow:
         self.top.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
         # Fonts
-        header_font = ("Helvetica", 20, "bold")
-        label_font = ("Helvetica", 14)
-        entry_font = ("Helvetica", 12)
+        title_font = ("Helvetica", 20, "bold")
+        label_font = ("Helvetica", 16)
+        entry_font = ("Helvetica", 14)
 
-        # Subjects to track
-        self.subjects = [
-            "Philosophy", "Mathematics", "Physics", "Chemistry", "Biology",
-            "Psychology", "Computer Science", "Business/Finance", "Economics", "Politics"
-        ]
+        self.subject_count = 0
+        self.subject_entries = []
 
-        self.vars = {}
-        self.entry_widgets = {}
-
-        # Header + Submit button row
+        # Header + Submit button
         header_frame = tk.Frame(self.top)
         header_frame.pack(fill="x", padx=20, pady=10)
 
-        tk.Label(header_frame, text="Learning Summary", font=header_font).pack(side="left")
+        tk.Label(header_frame, text="Learning Summary", font=title_font).pack(side="left")
 
         tk.Button(
             header_frame,
@@ -53,13 +47,54 @@ class LearningWindow:
             activeforeground="white",
             command=self.submit
         ).pack(side="right")
-        
+
+        # Entry area
+        self.grid_frame = tk.Frame(self.top)
+        self.grid_frame.pack(padx=20, pady=10, fill="both", expand=True)
+
+        # Add first subject row
+        self.add_subject_row()
+
+        # Add/Remove buttons
+        button_frame = tk.Frame(self.top)
+        button_frame.pack(fill="x", padx=20, pady=10)
+
+        tk.Button(
+            button_frame,
+            text="Add Another Subject",
+            font=("Helvetica", 14, "bold"),
+            bg="#03A9F4",
+            fg="blue",
+            width=18,
+            height=2,
+            relief="raised",
+            bd=5,
+            activebackground="#0288D1",
+            activeforeground="white",
+            command=self.add_subject_row
+        ).pack(side="left")
+
+        tk.Button(
+            button_frame,
+            text="Remove Last Subject",
+            font=("Helvetica", 14, "bold"),
+            bg="#F44336",
+            fg="red",
+            width=18,
+            height=2,
+            relief="raised",
+            bd=5,
+            activebackground="#D32F2F",
+            activeforeground="white",
+            command=self.remove_subject_row
+        ).pack(side="right")
+
         # Date picker
         date_frame = tk.Frame(self.top)
         date_frame.pack(pady=5)
-        
+
         tk.Label(date_frame, text="Select Date:", font=("Helvetica", 14)).pack(side="left", padx=5)
-        
+
         self.date_picker = DateEntry(
             date_frame,
             width=12,
@@ -74,61 +109,86 @@ class LearningWindow:
         )
         self.date_picker.pack(side="left", padx=5)
 
-        # Grid layout for checkboxes and entries
-        self.grid_frame = tk.Frame(self.top)
-        self.grid_frame.pack(padx=20, pady=10, fill="both", expand=True)
+    def add_subject_row(self):
+        row = self.subject_count * 2
+        label = f"Subject {chr(65 + self.subject_count)}"
+        tk.Label(self.grid_frame, text=label, font=("Helvetica", 13, "bold")).grid(row=row, column=0, padx=5, sticky="w")
 
-        for row, subject in enumerate(self.subjects):
-            var = tk.BooleanVar()
-            chk = tk.Checkbutton(self.grid_frame, text=subject, variable=var, font=label_font,
-                                 command=lambda s=subject: self.toggle_entries(s))
-            chk.grid(row=row, column=0, sticky="w", padx=5, pady=5)
-            self.vars[subject] = var
-            self.entry_widgets[subject] = {}
+        entries = {}
 
-    def toggle_entries(self, subject):
-        row = list(self.vars).index(subject)
+        # Dropdown for subject selection
+        subjects = [
+            "Philosophy", "Art", "Mathematics", "Physics", "Chemistry", "Biology",
+            "Psychology", "Computer Science", "Business/Finance", "Economics", "Politics"
+        ]
+        subject_var = tk.StringVar(value=subjects[0])
+        tk.Label(self.grid_frame, text="Subject", font=("Helvetica", 13)).grid(row=row, column=1, sticky="w", padx=5)
+        subject_menu = tk.OptionMenu(self.grid_frame, subject_var, *subjects)
+        subject_menu.config(font=("Helvetica", 12))
+        subject_menu.grid(row=row, column=2, padx=5)
+        entries["subject"] = subject_var
 
-        # Clear all widgets in this row except the checkbox
-        for widget in self.grid_frame.grid_slaves(row=row):
-            if widget.grid_info()["column"] != 0:
-                widget.destroy()
+        # Duration
+        tk.Label(self.grid_frame, text="Duration", font=("Helvetica", 13)).grid(row=row, column=3, sticky="w", padx=5)
+        duration_entry = tk.Entry(self.grid_frame, font=("Helvetica", 12), width=3)
+        duration_entry.grid(row=row, column=4, padx=5)
+        entries["duration"] = duration_entry
 
-        self.entry_widgets[subject] = {}
+        # Topic
+        tk.Label(self.grid_frame, text="Topic", font=("Helvetica", 13)).grid(row=row, column=5, sticky="w", padx=5)
+        topic_entry = tk.Entry(self.grid_frame, font=("Helvetica", 12), width=9)
+        topic_entry.grid(row=row, column=6, padx=5)
+        entries["topic"] = topic_entry
 
-        if not self.vars[subject].get():
+        # Concept Learned
+        tk.Label(self.grid_frame, text="Learned", font=("Helvetica", 13)).grid(row=row, column=7, sticky="w", padx=5)
+        concept_entry = tk.Entry(self.grid_frame, font=("Helvetica", 12), width=16)
+        concept_entry.grid(row=row, column=8, padx=5)
+        entries["concept"] = concept_entry
+
+        self.subject_entries.append(entries)
+        self.subject_count += 1
+
+    def remove_subject_row(self):
+        if self.subject_count == 0:
             return
-
-        def add_entry(col, label, key, width=12):
-            lbl = tk.Label(self.grid_frame, text=label, font=("Helvetica", 12))
-            lbl.grid(row=row, column=col, sticky="w", padx=5)
-            ent = tk.Entry(self.grid_frame, font=("Helvetica", 12), width=width)
-            ent.grid(row=row, column=col + 1, padx=5)
-            self.entry_widgets[subject][key] = ent
-
-        add_entry(1, "Duration (min)", "duration", width=5)
-        add_entry(3, "Topic", "topic", width=10)
-        add_entry(5, "Concept Learned", "concept", width=20)
+        last_row = (self.subject_count - 1) * 2
+        for widget in self.grid_frame.grid_slaves():
+            if widget.grid_info()["row"] == last_row:
+                widget.destroy()
+        self.subject_entries.pop()
+        self.subject_count -= 1
 
     def submit(self):
         selected_date = self.date_picker.get_date().isoformat()
         result = {"Date": selected_date}
-        for subject, widgets in self.entry_widgets.items():
-            if not self.vars[subject].get():
-                continue
-            result[subject] = {}
-            for key, entry in widgets.items():
-                value = entry.get().strip()
-                if key == "duration":
-                    if not value.isdigit():
-                        messagebox.showerror("Invalid Input", f"Please enter a whole number for '{subject} - duration'.")
-                        return
-                    result[subject][key] = int(value)
-                else:
-                    if not value:
-                        messagebox.showerror("Missing Input", f"Please fill in '{subject} - {key}'.")
-                        return
-                    result[subject][key] = value
+        for i, entries in enumerate(self.subject_entries):
+            label = f"Subject {chr(65 + i)}"
+            result[label] = {}
+            subject = entries["subject"].get()
+            result[label]["subject"] = subject
+
+            # Validate duration
+            duration_val = entries["duration"].get().strip()
+            if not duration_val.isdigit():
+                messagebox.showerror("Invalid Input", f"Please enter a whole number for '{label} - duration'.")
+                return
+            result[label]["duration"] = int(duration_val)
+
+            # Topic
+            topic_val = entries["topic"].get().strip()
+            if not topic_val:
+                messagebox.showerror("Missing Input", f"Please fill in '{label} - topic'.")
+                return
+            result[label]["topic"] = topic_val
+
+            # Concept Learned
+            concept_val = entries["concept"].get().strip()
+            if not concept_val:
+                messagebox.showerror("Missing Input", f"Please fill in '{label} - concept'.")
+                return
+            result[label]["concept"] = concept_val
 
         self.callback("Learning", result)
         self.top.destroy()
+

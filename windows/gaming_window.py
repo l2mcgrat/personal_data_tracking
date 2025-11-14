@@ -158,5 +158,3 @@ class GamingWindow:
 
         self.callback("Gaming", result)
         self.top.destroy()
-
-

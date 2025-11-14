@@ -55,7 +55,7 @@ def consolidate_data():
                 # Flatten each group
                 for (category, sublabel), metrics in grouped.items():
                     # Case 1: values are primitive (e.g., "Chicken Wrap")
-                    id_key = next((k for k in ["title", "type", "name", "purpose", "song", "person", "topic", "game", "friends", "reflection"] if k in metrics), None)
+                    id_key = next((k for k in ["title", "type", "name", "purpose", "song", "person", "topic", "game", "friends", "reflection", "subject"] if k in metrics), None)
                     identifier = metrics.get(id_key, sublabel) if id_key else sublabel
 
                     # Case 2: value itself is a dict string
