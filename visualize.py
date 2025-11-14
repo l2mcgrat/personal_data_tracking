@@ -1,13 +1,19 @@
 
 import os
 import numpy as np
+from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from matplotlib.backends.backend_pdf import PdfPages
 import pandas as pd
 
-def visualize_daily_reports(master_df, output_dir="data/reports"):
+def visualize_daily_reports(master_df):
+    output_dir="reports/daily_reports"
     os.makedirs(output_dir, exist_ok=True)
+
+    all_daily_durations = {}
+
+    # --- Daily Reports ---
 
     for date, group in master_df.groupby(master_df["Date"].dt.date):
         pdf_path = os.path.join(output_dir, f"daily_report_{date}.pdf")
@@ -67,6 +73,8 @@ def visualize_daily_reports(master_df, output_dir="data/reports"):
             if total > 0:
                 durations = {k: v / total * 1440 for k, v in durations.items()}
             
+            all_daily_durations[str(date)] = durations
+            
             fig1, ax1 = plt.subplots(figsize=(12, 12))
             ax1.pie(durations.values(), labels=durations.keys(), autopct="%1.1f%%", startangle=90, textprops={"fontsize": 8})
             ax1.set_title(f"Daily Activity Breakdown ({date})")
@@ -82,23 +90,64 @@ def visualize_daily_reports(master_df, output_dir="data/reports"):
                     protein = pd.to_numeric(meal_group.loc[meal_group["Metric"].str.lower() == "proteins", "Value"], errors="coerce").sum() * 4
                     fat = pd.to_numeric(meal_group.loc[meal_group["Metric"].str.lower() == "fats", "Value"], errors="coerce").sum() * 9
                     meal_data[subtype] = {"Carbs": carbs, "Protein": protein, "Fat": fat}
-
+            
+                # Flatten into (meal, macro, value)
+                flat_data = [(meal, macro, val) for meal, macros in meal_data.items() for macro, val in macros.items()]
+            
+                # Sort by macro type: Carbs → Protein → Fat
+                macro_order = {"Carbs": 0, "Protein": 1, "Fat": 2}
+                flat_data.sort(key=lambda x: macro_order[x[1]])
+            
                 labels, values, colors = [], [], []
                 base_colors = {"Carbs": "orange", "Protein": "red", "Fat": "gold"}
                 shade_factors = np.linspace(0.6, 1.2, len(meal_data))
+            
+                def wrap_label_at_space(label, max_width=20):
+                    words = label.split(" ")
+                    lines, current_line = [], ""
+                    for word in words:
+                        if len(current_line) + len(word) + 1 <= max_width:
+                            current_line += (" " if current_line else "") + word
+                        else:
+                            lines.append(current_line)
+                            current_line = word
+                    if current_line:
+                        lines.append(current_line)
+                    return "\n".join(lines)
+            
+                for meal, macro, val in flat_data:
+                    # Bold macro name
+                    bold_macro = r"$\mathbf{" + macro + "}$"
+                    label = wrap_label_at_space(f"{meal} - {bold_macro}", 15)
+                    labels.append(label)
+                    values.append(val)
+            
+                    # Shade colors by meal index
+                    meal_idx = list(meal_data.keys()).index(meal)
+                    shade = shade_factors[meal_idx]
+                    base_rgb = np.array(mcolors.to_rgb(base_colors[macro]))
+                    shaded_rgb = np.clip(base_rgb * shade, 0, 1)
+                    colors.append(shaded_rgb)
+            
+                fig2, ax2 = plt.subplots(figsize=(12, 12))
+                ax2.pie(
+                    values,
+                    labels=labels,
+                    colors=colors,
+                    autopct="%1.1f%%",
+                    startangle=90,
+                    textprops={"fontsize": 8}
+                )
+                ax2.set_title(f"Meal Breakdown ({date})")
+                pdf.savefig(fig2)
+                plt.close(fig2)
                 
-                for i, (meal, macros) in enumerate(meal_data.items()):
-                    shade = shade_factors[i]
-                    for macro, val in macros.items():
-                        # Bold the macro name
-                        bold_macro = r"$\mathbf{" + macro + "}$"
-                        labels.append(f"{meal} - {bold_macro}")
-                        values.append(val)
-                        base_rgb = np.array(mcolors.to_rgb(base_colors[macro]))
-                        shaded_rgb = np.clip(base_rgb * shade, 0, 1)
-                        colors.append(shaded_rgb)
-
-                def wrap_label(label, max_width=20):
+                # --- Table of Macronutrients ---
+                fig3, ax3 = plt.subplots(figsize=(10, 6))
+                ax3.axis("off")
+                
+                # Define the wrapping function once
+                def wrap_label_at_space(label, max_width=20):
                     words = label.split(" ")
                     lines, current_line = [], ""
                     for word in words:
@@ -111,18 +160,6 @@ def visualize_daily_reports(master_df, output_dir="data/reports"):
                         lines.append(current_line)
                     return "\n".join(lines)
                 
-                wrapped_labels = [wrap_label(lbl, 15) for lbl in labels]
-
-                fig2, ax2 = plt.subplots(figsize=(12, 12))
-                ax2.pie(values, labels=wrapped_labels, colors=colors, autopct="%1.1f%%", startangle=90, textprops={"fontsize": 8})
-                ax2.set_title(f"Meal Breakdown ({date})")
-                pdf.savefig(fig2)
-                plt.close(fig2)
-                
-                # --- Table of Macronurtients ---
-                fig3, ax3 = plt.subplots(figsize=(10, 6))
-                ax3.axis("off")
-                
                 table_data = []
                 cumulative_carbs = cumulative_protein = cumulative_fat = cumulative_total = 0
                 
@@ -133,8 +170,8 @@ def visualize_daily_reports(master_df, output_dir="data/reports"):
                     cumulative_fat += macros["Fat"]
                     cumulative_total += total_cal
                 
-                    # Wrap long meal names by inserting line breaks every ~20 characters
-                    wrapped_meal = "\n".join([meal[i:i+20] for i in range(0, len(meal), 20)])
+                    # Wrap long meal names at spaces instead of fixed character chunks
+                    wrapped_meal = wrap_label_at_space(meal, max_width=20)
                 
                     table_data.append([
                         wrapped_meal,
@@ -162,12 +199,10 @@ def visualize_daily_reports(master_df, output_dir="data/reports"):
                 
                 # Adjust row heights consistently across all columns
                 for row_idx in range(len(table_data)):
-                    # Get the meal/snack cell text for this row
                     meal_text = table.get_celld()[(row_idx+1, 0)].get_text().get_text()  # +1 because row 0 is header
                     num_lines = meal_text.count("\n") + 1
                     row_height = 0.08 * num_lines
                 
-                    # Apply the same height to all cells in this row (including header row separately)
                     for col_idx in range(len(col_labels)):
                         cell = table.get_celld()[(row_idx+1, col_idx)]
                         cell.set_height(row_height)
@@ -176,8 +211,58 @@ def visualize_daily_reports(master_df, output_dir="data/reports"):
                 for col_idx in range(len(col_labels)):
                     table.get_celld()[(0, col_idx)].set_height(0.1)
                 
-                ax3.set_title(f"Meal & Snack Macro Table ({date})", pad=20)  # push title down
+                ax3.set_title(f"Meal & Snack Macro Table ({date})", pad=20)
                 plt.tight_layout()
                 pdf.savefig(fig3)
                 plt.close(fig3)
-                
+              
+    print(all_daily_durations)  
+              
+    # --- Weekly Reports ---
+    weekly_folder = "reports/weekly_reports"
+    os.makedirs(weekly_folder, exist_ok=True)
+    
+    def get_week_start(date_obj):
+        # Ensure week starts on Sunday
+        return date_obj - timedelta(days=(date_obj.weekday() + 1) % 7)
+    
+    grouped_weeks = {}
+    for date_str, day_durations in all_daily_durations.items():
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d").date()
+        week_start = get_week_start(date_obj)
+        week_key = week_start.strftime("%Y-%m-%d")
+        grouped_weeks.setdefault(week_key, {})[date_obj] = day_durations
+
+    for week_start, week_days in grouped_weeks.items():
+        # Aggregate totals
+        weekly_totals = {}
+        for day, durations in week_days.items():
+            for cat, mins in durations.items():
+                weekly_totals[cat] = weekly_totals.get(cat, 0) + mins
+    
+        # Rank categories by total minutes
+        ranked = sorted(weekly_totals.items(), key=lambda x: x[1], reverse=True)
+        top3 = [c for c, _ in ranked[:4]]
+        mid = [c for c, _ in ranked[4:9]]
+        rest = [c for c, _ in ranked[9:]]
+    
+    def plot_group(categories, ax, title, week_days):
+        days = sorted(week_days.keys())
+        for cat in categories:
+            y = [week_days.get(day, {}).get(cat, 0) for day in days]
+            ax.plot(days, y, marker="o", label=cat)
+        ax.set_title(title)
+        ax.set_ylabel("Minutes")
+        ax.legend()
+        ax.set_xticks(days)
+        ax.set_xticklabels([d.strftime("%a") for d in days])
+    
+    fig, axes = plt.subplots(3, 1, figsize=(12, 18))
+    plot_group(top3, axes[0], "Top 3 Categories", week_days)
+    plot_group(mid, axes[1], "Ranked 4–8 Categories", week_days)
+    plot_group(rest, axes[2], "Remaining Categories", week_days)
+    
+    plt.tight_layout()
+    pdf_path = os.path.join("reports/weekly_reports", f"weekly_report_{week_start}.pdf")
+    plt.savefig(pdf_path)
+    plt.close()

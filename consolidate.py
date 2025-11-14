@@ -7,7 +7,7 @@ def consolidate_data():
     from collections import defaultdict
 
     master_rows = []
-    data_dir = "data"
+    data_dir = "data/window_data"
 
     for filename in os.listdir(data_dir):
         if not filename.endswith(".csv") or filename == "master_log.csv":
@@ -98,6 +98,6 @@ def consolidate_data():
 
     master_df = pd.DataFrame(master_rows)
     master_df.sort_values("Date", inplace=True)
-    master_df.to_csv(os.path.join(data_dir, "master_log.csv"), index=False)
+    master_df.to_csv(os.path.join("data", "master_log.csv"), index=False)
     print("Master log saved to data/master_log.csv")
     

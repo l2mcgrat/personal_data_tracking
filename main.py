@@ -153,7 +153,7 @@ class CategorySelector:
                 flat_data[section] = values
     
         # Step 3: Prepare CSV file
-        filename = os.path.join("data", f"{name}.csv")
+        filename = os.path.join("data/window_data", f"{name}.csv")
         rows = []
     
         # Step 4: Load existing data if file exists
