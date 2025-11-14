@@ -2,218 +2,250 @@ Date,Category,Subtype,Metric,Value,Source
 2025-11-09,YouTube,Most Agreesive Pitchers,duration,25,Media.csv
 2025-11-09,Person,Mom,duration,10,Messaging_Calling.csv
 2025-11-09,Person,Mom,context,Stuff I Already Talked About,Messaging_Calling.csv
-2025-11-09,Drugs,Seroquil (Night Time),notes,Good,Miscellaneous.csv
-2025-11-09,Drugs,Seroquil (Night Time),dosage,100,Miscellaneous.csv
-2025-11-09,Drugs,Pregabalin,notes,Good,Miscellaneous.csv
-2025-11-09,Drugs,Pregabalin,dosage,300,Miscellaneous.csv
-2025-11-09,Fixed,General,Liters of Water Drank,10,Miscellaneous.csv
+2025-11-09,Nap,General,start,10:00,Sleep.csv
 2025-11-09,Fixed,General,Teeth Brushed,1,Miscellaneous.csv
+2025-11-09,Fixed,General,Showers,1,Miscellaneous.csv
+2025-11-09,Fixed,General,Liters of Water Drank,10,Miscellaneous.csv
+2025-11-09,Drugs,Pregabalin,dosage,300,Miscellaneous.csv
+2025-11-09,Drugs,Pregabalin,notes,Good,Miscellaneous.csv
+2025-11-09,Drugs,Seroquil (Night Time),dosage,100,Miscellaneous.csv
+2025-11-09,Drugs,Seroquil (Night Time),notes,Good,Miscellaneous.csv
 2025-11-09,Main Sleep,General,start,01:50,Sleep.csv
 2025-11-09,Main Sleep,General,end,08:30,Sleep.csv
 2025-11-09,Main Sleep,General,duration,400,Sleep.csv
 2025-11-09,Main Sleep,General,quality,8,Sleep.csv
-2025-11-09,Nap,General,start,10:00,Sleep.csv
-2025-11-09,Nap,General,end,17:00,Sleep.csv
 2025-11-09,Nap,General,duration,420.0,Sleep.csv
-2025-11-09,Fixed,General,Showers,1,Miscellaneous.csv
-2025-11-09,YouTube,Atrioc Most Agressive Pitchers,duration,22,Media.csv
-2025-11-09,Nap,General,quality,7.0,Sleep.csv
+2025-11-09,Nap,General,end,17:00,Sleep.csv
 2025-11-09,Anime,Gachiakuta,rating,67,Media.csv
 2025-11-09,Anime,Gachiakuta,duration,22,Media.csv
 2025-11-09,Anime,One Punch Man S3,rating,55,Media.csv
-2025-11-09,YouTube,Atrioc Most Agressive Pitchers,rating,81,Media.csv
-2025-11-09,YouTube,Why Ohtani is Worth $700 Million,duration,14,Media.csv
-2025-11-09,YouTube,Why Ohtani is Worth $700 Million,rating,95,Media.csv
-2025-11-09,YouTube,How Yamamoto Studied His Way to $325 Million,duration,13,Media.csv
-2025-11-09,YouTube,Most Agreesive Pitchers,rating,70,Media.csv
-2025-11-09,YouTube,How Yamamoto Studied His Way to $325 Million,rating,83,Media.csv
 2025-11-09,Anime,One Punch Man S3,duration,22,Media.csv
-2025-11-10,Meals,English Muffin with Egg and Sausage,carbs,30,Eating.csv
-2025-11-10,Cooking,General,minutes,0,Cooking.csv
-2025-11-10,Applications,General,count,0,Career Prep.csv
-2025-11-10,Interview,General,duration,0,Career Prep.csv
-2025-11-10,Main Sleep,General,start,1:50,Sleep.csv
-2025-11-10,Meals,English Muffin with Egg and Sausage,fats,31,Eating.csv
-2025-11-10,Person,Katee,duration,1.0,Messaging_Calling.csv
-2025-11-10,Drive,General,distance,0,Driving.csv
-2025-11-10,Drive,General,duration,0,Driving.csv
-2025-11-10,Triceps,General,rep_max,15.0,Workouts.csv
+2025-11-09,YouTube,How Yamamoto Studied His Way to $325 Million,rating,83,Media.csv
+2025-11-09,YouTube,How Yamamoto Studied His Way to $325 Million,duration,13,Media.csv
+2025-11-09,YouTube,Why Ohtani is Worth $700 Million,rating,95,Media.csv
+2025-11-09,YouTube,Why Ohtani is Worth $700 Million,duration,14,Media.csv
+2025-11-09,YouTube,Atrioc Most Agressive Pitchers,rating,81,Media.csv
+2025-11-09,YouTube,Atrioc Most Agressive Pitchers,duration,22,Media.csv
+2025-11-09,YouTube,Most Agreesive Pitchers,rating,70,Media.csv
+2025-11-09,Nap,General,quality,7.0,Sleep.csv
+2025-11-10,Work Day,General,worked,0,Work Day.csv
+2025-11-10,Work Day,General,meetings,0,Work Day.csv
+2025-11-10,Chest,General,rep_min,4.0,Workouts.csv
+2025-11-10,Work Day,General,projects,0,Work Day.csv
+2025-11-10,Meals,Pork on Bun with Sauerkraut,carbs,40,Eating.csv
 2025-11-10,Triceps,General,rep_min,8.0,Workouts.csv
 2025-11-10,Triceps,General,sets,12.0,Workouts.csv
 2025-11-10,Triceps,General,exercises,3.0,Workouts.csv
 2025-11-10,Chest,General,rep_max,15.0,Workouts.csv
-2025-11-10,Chest,General,rep_min,4.0,Workouts.csv
-2025-11-10,Problem,General,duration,0,Leetcode.csv
-2025-11-10,Meals,English Muffin with Egg and Sausage,proteins,20,Eating.csv
-2025-11-10,Meals,Asian Chicken and Rice,proteins,70,Eating.csv
-2025-11-10,Meals,Pork on Bun with Sauerkraut,fats,48,Eating.csv
-2025-11-10,Main Sleep,General,end,8:30,Sleep.csv
-2025-11-10,Main Sleep,General,duration,400,Sleep.csv
-2025-11-10,Main Sleep,General,quality,7,Sleep.csv
-2025-11-10,Work Day,General,projects,0,Work Day.csv
-2025-11-10,Work Day,General,walking,0,Work Day.csv
-2025-11-10,Work Day,General,meetings,0,Work Day.csv
-2025-11-10,Work Day,General,worked,0,Work Day.csv
-2025-11-10,Subject,Relationships,concept,Setting Boundaries,Learning.csv
-2025-11-10,Subject,Relationships,duration,60,Learning.csv
-2025-11-10,Subject,Relationships,subject,Psychology,Learning.csv
-2025-11-10,Snacks,Popcord,proteins,14.0,Eating.csv
+2025-11-10,Drive,General,duration,0,Driving.csv
 2025-11-10,Chest,General,sets,19.0,Workouts.csv
-2025-11-10,Snacks,Popcord,fats,34.0,Eating.csv
-2025-11-10,Snacks,Popcord,carbs,100.0,Eating.csv
-2025-11-10,Meals,Asian Chicken and Rice,fats,40,Eating.csv
-2025-11-10,Meals,Asian Chicken and Rice,carbs,100,Eating.csv
-2025-11-10,Meals,Pork on Bun with Sauerkraut,proteins,40,Eating.csv
-2025-11-10,Meals,Pork on Bun with Sauerkraut,carbs,40,Eating.csv
 2025-11-10,Chest,General,exercises,4.0,Workouts.csv
-2025-11-10,Person,Katee,context,Chess Planning,Messaging_Calling.csv
+2025-11-10,Work Day,General,walking,0,Work Day.csv
+2025-11-10,Drive,General,distance,0,Driving.csv
+2025-11-10,Person,Dani,duration,1.0,Messaging_Calling.csv
+2025-11-10,Subject,Relationships,duration,60,Learning.csv
+2025-11-10,Meals,English Muffin with Egg and Sausage,proteins,20,Eating.csv
+2025-11-10,Meals,English Muffin with Egg and Sausage,fats,31,Eating.csv
+2025-11-10,Meals,English Muffin with Egg and Sausage,carbs,30,Eating.csv
+2025-11-10,Cooking,General,minutes,0,Cooking.csv
+2025-11-10,Meals,Pork on Bun with Sauerkraut,proteins,40,Eating.csv
+2025-11-10,Meals,Asian Chicken and Rice,carbs,100,Eating.csv
+2025-11-10,Meals,Asian Chicken and Rice,fats,40,Eating.csv
+2025-11-10,Meals,Asian Chicken and Rice,proteins,70,Eating.csv
+2025-11-10,Snacks,Popcord,carbs,100.0,Eating.csv
+2025-11-10,Subject,Relationships,concept,Setting Boundaries,Learning.csv
+2025-11-10,Snacks,Popcord,fats,34.0,Eating.csv
+2025-11-10,Applications,General,count,0,Career Prep.csv
+2025-11-10,Interview,General,duration,0,Career Prep.csv
+2025-11-10,Problem,General,duration,0,Leetcode.csv
+2025-11-10,Subject,Relationships,subject,Psychology,Learning.csv
+2025-11-10,Person,Dani,context,Chess Planning,Messaging_Calling.csv
+2025-11-10,Person,Dani,context,Chit Chat,Messaging_Calling.csv
+2025-11-10,Person,Dani,context,Politics/Catchup,Messaging_Calling.csv
+2025-11-10,Person,Dani,duration,1.0,Messaging_Calling.csv
+2025-11-10,Person,Dani,duration,5,Messaging_Calling.csv
+2025-11-10,Snacks,Popcord,proteins,14.0,Eating.csv
+2025-11-10,Project,personal_data_tracking,fixes,More Date Entry Field to Top Center.,Coding Projects.csv
+2025-11-10,Triceps,General,rep_max,15.0,Workouts.csv
+2025-11-10,Meals,Pork on Bun with Sauerkraut,fats,48,Eating.csv
+2025-11-10,Fixed,General,Teeth Brushed,1,Miscellaneous.csv
+2025-11-10,Fixed,General,Showers,1,Miscellaneous.csv
+2025-11-10,Fixed,General,Liters of Water Drank,5,Miscellaneous.csv
+2025-11-10,Drugs,Pregabalin,dosage,300,Miscellaneous.csv
 2025-11-10,Drugs,Pregabalin,notes,Good,Miscellaneous.csv
-2025-11-10,Plan,Dusty,duration,40,Socializing.csv
+2025-11-10,Drugs,Seroquil (Night Time),dosage,100,Miscellaneous.csv
+2025-11-10,Drugs,Seroquil (Night Time),notes,Good,Miscellaneous.csv
 2025-11-10,Anime,Kurokos BasketBall,rating,92,Media.csv
 2025-11-10,Anime,Kurokos BasketBall,duration,88,Media.csv
 2025-11-10,YouTube,Pro Sports Have a Big Problem,rating,80,Media.csv
-2025-11-10,YouTube,Pro Sports Have a Big Problem,duration,43,Media.csv
-2025-11-10,YouTube,Felony Murder: LWT,rating,60,Media.csv
-2025-11-10,YouTube,Felony Murder: LWT,duration,21,Media.csv
-2025-11-10,YouTube,Shorts,rating,40,Media.csv
-2025-11-10,Plan,Dusty,activity,Chess,Socializing.csv
-2025-11-10,YouTube,How 1 Man Fooled 5 Women on Survivor,rating,55,Media.csv
-2025-11-10,Drugs,Seroquil (Night Time),notes,Good,Miscellaneous.csv
-2025-11-10,Drugs,Seroquil (Night Time),dosage,100,Miscellaneous.csv
-2025-11-10,Drugs,Pregabalin,dosage,300,Miscellaneous.csv
-2025-11-10,Fixed,General,Liters of Water Drank,5,Miscellaneous.csv
-2025-11-10,YouTube,Shorts,duration,15,Media.csv
-2025-11-10,Fixed,General,Teeth Brushed,1,Miscellaneous.csv
-2025-11-10,YouTube,How 1 Man Fooled 5 Women on Survivor,duration,13,Media.csv
-2025-11-10,Project,personal_data_tracking,duration,150,Coding Projects.csv
+2025-11-10,Main Sleep,General,quality,7,Sleep.csv
+2025-11-10,Main Sleep,General,duration,400,Sleep.csv
 2025-11-10,Project,personal_data_tracking,changes,Added Date Selector and Modified Code to Update .csvs if data already entered for that date. Add row if data not entered.,Coding Projects.csv
-2025-11-10,Project,personal_data_tracking,fixes,More Date Entry Field to Top Center.,Coding Projects.csv
-2025-11-10,Fixed,General,Showers,1,Miscellaneous.csv
-2025-11-11,YouTube,The Dumbest Rules in Baseball,rating,85.0,Media.csv
-2025-11-11,Subject,Drawing,concept,Manga Art,Learning.csv
-2025-11-11,Subject,Drawing,duration,75,Learning.csv
-2025-11-11,Subject,Drawing,subject,Art,Learning.csv
-2025-11-11,Meals,2 Salmons with Roasted Veggies,carbs,30,Eating.csv
-2025-11-11,Problem,General,duration,0,Leetcode.csv
-2025-11-11,YouTube,The 7 Horrifying Levels of Apostles in Berserk,duration,30.0,Media.csv
-2025-11-11,Interview,General,duration,0,Career Prep.csv
-2025-11-11,Applications,General,count,0,Career Prep.csv
-2025-11-11,Meals,4 Soft Shell Tacos with Cheese and Lettuce,proteins,36,Eating.csv
-2025-11-11,Meals,"4 Hard Boiled Eggs, 6 pc of Bacon, Two Slices of Toast, 1 Cup of Beans, 1 Bowl of Vector",proteins,65,Eating.csv
-2025-11-11,Meals,4 Soft Shell Tacos with Cheese and Lettuce,carbs,84,Eating.csv
-2025-11-11,Meals,"4 Hard Boiled Eggs, 6 pc of Bacon, Two Slices of Toast, 1 Cup of Beans, 1 Bowl of Vector",fats,49,Eating.csv
-2025-11-11,Song,Shake,duration,120,Music.csv
-2025-11-11,Song,Shake,rating,7,Music.csv
-2025-11-11,YouTube,The 7 Horrifying Levels of Apostles in Berserk,rating,72.0,Media.csv
-2025-11-11,YouTube,"Jon Steward ""Can't F**king Believe"" Democrats Caved on the Government Shutdown",duration,22.0,Media.csv
-2025-11-11,Meals,"4 Hard Boiled Eggs, 6 pc of Bacon, Two Slices of Toast, 1 Cup of Beans, 1 Bowl of Vector",carbs,110,Eating.csv
+2025-11-10,Main Sleep,General,start,1:50,Sleep.csv
+2025-11-10,YouTube,Shorts,duration,15,Media.csv
+2025-11-10,Main Sleep,General,end,8:30,Sleep.csv
+2025-11-10,YouTube,Shorts,rating,40,Media.csv
+2025-11-10,YouTube,Felony Murder: LWT,duration,21,Media.csv
+2025-11-10,Project,personal_data_tracking,duration,150,Coding Projects.csv
+2025-11-10,YouTube,How 1 Man Fooled 5 Women on Survivor,duration,13,Media.csv
+2025-11-10,YouTube,How 1 Man Fooled 5 Women on Survivor,rating,55,Media.csv
+2025-11-10,YouTube,Felony Murder: LWT,rating,60,Media.csv
+2025-11-10,Plan,Dusty,activity,Chess,Socializing.csv
+2025-11-10,Plan,Dusty,duration,40,Socializing.csv
+2025-11-10,YouTube,Pro Sports Have a Big Problem,duration,43,Media.csv
+2025-11-11,YouTube,The Dumbest Rules in Baseball,duration,20.0,Media.csv
+2025-11-11,Person,Mom,context,Catchup,Messaging_Calling.csv
 2025-11-11,Cooking,General,minutes,0,Cooking.csv
-2025-11-11,YouTube,"Jon Steward ""Can't F**king Believe"" Democrats Caved on the Government Shutdown",rating,75.0,Media.csv
-2025-11-11,Meals,4 Soft Shell Tacos with Cheese and Lettuce,fats,40,Eating.csv
+2025-11-11,Person,Mom,duration,30.0,Messaging_Calling.csv
+2025-11-11,YouTube,Nas - Ether (Lyrics),rating,90.0,Media.csv
+2025-11-11,Problem,General,duration,0,Leetcode.csv
+2025-11-11,YouTube,Nas - Ether (Lyrics),duration,5.0,Media.csv
+2025-11-11,Person,Mom,context,Return to Work,Messaging_Calling.csv
+2025-11-11,YouTube,The Play That 'Ruined' Baseball,rating,81.0,Media.csv
+2025-11-11,Song,Shake,rating,7,Music.csv
+2025-11-11,Applications,General,count,0,Career Prep.csv
+2025-11-11,Song,Shake,duration,120,Music.csv
+2025-11-11,Meals,2 Salmons with Roasted Veggies,proteins,80,Eating.csv
 2025-11-11,Meals,2 Salmons with Roasted Veggies,fats,40,Eating.csv
-2025-11-11,Person,Catherine Germaine,context,Return to Work,Messaging_Calling.csv
+2025-11-11,Meals,2 Salmons with Roasted Veggies,carbs,30,Eating.csv
+2025-11-11,Meals,4 Soft Shell Tacos with Cheese and Lettuce,proteins,36,Eating.csv
+2025-11-11,Person,Mom,duration,8,Messaging_Calling.csv
+2025-11-11,Meals,4 Soft Shell Tacos with Cheese and Lettuce,carbs,84,Eating.csv
+2025-11-11,Meals,"4 Hard Boiled Eggs, 6 pc of Bacon, Two Slices of Toast, 1 Cup of Beans, 1 Bowl of Vector",proteins,65,Eating.csv
+2025-11-11,Meals,"4 Hard Boiled Eggs, 6 pc of Bacon, Two Slices of Toast, 1 Cup of Beans, 1 Bowl of Vector",fats,49,Eating.csv
+2025-11-11,Meals,"4 Hard Boiled Eggs, 6 pc of Bacon, Two Slices of Toast, 1 Cup of Beans, 1 Bowl of Vector",carbs,110,Eating.csv
+2025-11-11,YouTube,The Play That 'Ruined' Baseball,duration,21.0,Media.csv
+2025-11-11,Interview,General,duration,0,Career Prep.csv
+2025-11-11,Meals,4 Soft Shell Tacos with Cheese and Lettuce,fats,40,Eating.csv
+2025-11-11,Project,personal_data_tracking,duration,300,Coding Projects.csv
+2025-11-11,YouTube,The 7 Horrifying Levels of Apostles in Berserk,rating,72.0,Media.csv
+2025-11-11,Subject,Drawing,duration,75,Learning.csv
+2025-11-11,Subject,Drawing,concept,Manga Art,Learning.csv
+2025-11-11,Abs,General,rep_max,8.0,Workouts.csv
+2025-11-11,Abs,General,rep_min,6.0,Workouts.csv
+2025-11-11,Abs,General,sets,2.0,Workouts.csv
+2025-11-11,Abs,General,exercises,1.0,Workouts.csv
+2025-11-11,Back,General,rep_max,15.0,Workouts.csv
+2025-11-11,Back,General,rep_min,5.0,Workouts.csv
+2025-11-11,Subject,Drawing,subject,Art,Learning.csv
+2025-11-11,Back,General,sets,25.0,Workouts.csv
+2025-11-11,Main Sleep,General,quality,9,Sleep.csv
 2025-11-11,Plan,Ryan/Kyle,duration,60,Socializing.csv
+2025-11-11,Plan,Ryan/Kyle,activity,Eating,Socializing.csv
+2025-11-11,Main Sleep,General,duration,430,Sleep.csv
+2025-11-11,Main Sleep,General,end,8:30,Sleep.csv
+2025-11-11,Main Sleep,General,start,1:20,Sleep.csv
 2025-11-11,Project,personal_data_tracking,fixes,Bugs with data consolidation function.,Coding Projects.csv
 2025-11-11,Project,personal_data_tracking,changes,Updated Date Entry Locations. Consolidated .csv data into one file for better analysis.,Coding Projects.csv
-2025-11-11,Project,personal_data_tracking,duration,300,Coding Projects.csv
 2025-11-11,Back,General,exercises,5.0,Workouts.csv
-2025-11-11,Back,General,sets,25.0,Workouts.csv
-2025-11-11,Back,General,rep_min,5.0,Workouts.csv
-2025-11-11,Back,General,rep_max,15.0,Workouts.csv
-2025-11-11,Abs,General,exercises,1.0,Workouts.csv
-2025-11-11,Abs,General,sets,2.0,Workouts.csv
-2025-11-11,Abs,General,rep_min,6.0,Workouts.csv
-2025-11-11,Abs,General,rep_max,8.0,Workouts.csv
-2025-11-11,Person,Catherine Germaine,duration,30.0,Messaging_Calling.csv
-2025-11-11,Main Sleep,General,quality,9,Sleep.csv
-2025-11-11,Meals,2 Salmons with Roasted Veggies,proteins,80,Eating.csv
-2025-11-11,Main Sleep,General,end,8:30,Sleep.csv
-2025-11-11,YouTube,The Dumbest Rules in Baseball,duration,20.0,Media.csv
-2025-11-11,Plan,Ryan/Kyle,activity,Eating,Socializing.csv
-2025-11-11,Main Sleep,General,start,1:20,Sleep.csv
-2025-11-11,YouTube,The Play That 'Ruined' Baseball,duration,21.0,Media.csv
-2025-11-11,YouTube,Nas - Ether (Lyrics),rating,90.0,Media.csv
-2025-11-11,YouTube,Nas - Ether (Lyrics),duration,5.0,Media.csv
-2025-11-11,YouTube,The Play That 'Ruined' Baseball,rating,81.0,Media.csv
+2025-11-11,YouTube,The Dumbest Rules in Baseball,rating,85.0,Media.csv
+2025-11-11,YouTube,The 7 Horrifying Levels of Apostles in Berserk,duration,30.0,Media.csv
+2025-11-11,YouTube,"Jon Steward ""Can't F**king Believe"" Democrats Caved on the Government Shutdown",duration,22.0,Media.csv
+2025-11-11,YouTube,"Jon Steward ""Can't F**king Believe"" Democrats Caved on the Government Shutdown",rating,75.0,Media.csv
 2025-11-11,Drive,General,duration,0,Driving.csv
 2025-11-11,Drive,General,distance,0,Driving.csv
-2025-11-11,Main Sleep,General,duration,430,Sleep.csv
+2025-11-12,Subject,Leisure and Wellbeing,concept,Restrictions to Leisure,Learning.csv
 2025-11-12,Main Sleep,General,quality,7,Sleep.csv
 2025-11-12,Main Sleep,General,duration,410,Sleep.csv
-2025-11-12,Main Sleep,General,end,8:20,Sleep.csv
-2025-11-12,Main Sleep,General,start,1:30,Sleep.csv
-2025-11-12,Subject,Grounding,concept,Mental Grounding,Learning.csv
-2025-11-12,Meals,"3 Scrambled Eggs, Hash Browns, 3 Slices of Ham",fats,46,Eating.csv
-2025-11-12,Subject,Grounding,subject,Psychology,Learning.csv
-2025-11-12,Meals,"3 Scrambled Eggs, Hash Browns, 3 Slices of Ham",proteins,53,Eating.csv
-2025-11-12,Meals,Grilled Cheese and Sausage,carbs,43,Eating.csv
-2025-11-12,Meals,Grilled Cheese and Sausage,fats,45,Eating.csv
-2025-11-12,Meals,Grilled Cheese and Sausage,proteins,30,Eating.csv
-2025-11-12,Meals,"Meatloaf, Mashed Potatoes, Grilled Veggies, 1 Bowl of Vector Cereal and Spinach Salad",fats,64,Eating.csv
-2025-11-12,Meals,"Meatloaf, Mashed Potatoes, Grilled Veggies, 1 Bowl of Vector Cereal and Spinach Salad",proteins,64,Eating.csv
-2025-11-12,Snacks,Popcorn,carbs,50.0,Eating.csv
-2025-11-12,Snacks,Popcorn,fats,17.0,Eating.csv
 2025-11-12,Snacks,Popcorn,proteins,7.0,Eating.csv
-2025-11-12,Subject,Grounding,duration,45.0,Learning.csv
+2025-11-12,Snacks,Popcorn,fats,17.0,Eating.csv
+2025-11-12,Snacks,Popcorn,carbs,50.0,Eating.csv
+2025-11-12,Meals,"Meatloaf, Mashed Potatoes, Grilled Veggies, 1 Bowl of Vector Cereal and Spinach Salad",proteins,64,Eating.csv
+2025-11-12,Meals,"Meatloaf, Mashed Potatoes, Grilled Veggies, 1 Bowl of Vector Cereal and Spinach Salad",fats,64,Eating.csv
 2025-11-12,Meals,"Meatloaf, Mashed Potatoes, Grilled Veggies, 1 Bowl of Vector Cereal and Spinach Salad",carbs,130,Eating.csv
-2025-11-12,Project,personal_data_tracking,changes,"studied code, cleaned up data consolodation function",Coding Projects.csv
-2025-11-12,Project,personal_data_tracking,duration,300,Coding Projects.csv
-2025-11-12,Drugs,Seroquil (Night Time),dosage,100,Miscellaneous.csv
-2025-11-12,Drugs,Seroquil (Night Time),notes,Good,Miscellaneous.csv
-2025-11-12,Meditation,Mindfulness,duration,10,Meditating.csv
-2025-11-12,Shoulders,General,exercises,4.0,Workouts.csv
-2025-11-12,Shoulders,General,sets,20.0,Workouts.csv
-2025-11-12,Shoulders,General,rep_min,3.0,Workouts.csv
-2025-11-12,Person,Mom,context,Tech Issues,Messaging_Calling.csv
+2025-11-12,Meals,Grilled Cheese and Sausage,fats,45,Eating.csv
+2025-11-12,Subject,Leisure and Wellbeing,duration,45.0,Learning.csv
+2025-11-12,Meals,Grilled Cheese and Sausage,carbs,43,Eating.csv
+2025-11-12,Subject,Leisure and Wellbeing,subject,Psychology,Learning.csv
+2025-11-12,Meals,"3 Scrambled Eggs, Hash Browns, 3 Slices of Ham",proteins,53,Eating.csv
+2025-11-12,Main Sleep,General,start,1:30,Sleep.csv
+2025-11-12,Main Sleep,General,end,8:20,Sleep.csv
+2025-11-12,Meals,"3 Scrambled Eggs, Hash Browns, 3 Slices of Ham",fats,46,Eating.csv
+2025-11-12,Subject,Leisure and Wellbeing,subject,Psychology,Learning.csv
 2025-11-12,Meals,"3 Scrambled Eggs, Hash Browns, 3 Slices of Ham",carbs,60,Eating.csv
-2025-11-12,Shoulders,General,rep_max,15.0,Workouts.csv
-2025-11-12,Biceps,General,exercises,2.0,Workouts.csv
-2025-11-12,Person,Mom,duration,2.0,Messaging_Calling.csv
-2025-11-12,Biceps,General,sets,7.0,Workouts.csv
-2025-11-12,Drive,vape buying,distance,3,Driving.csv
+2025-11-12,Subject,Leisure and Wellbeing,duration,60,Learning.csv
+2025-11-12,Meals,Grilled Cheese and Sausage,proteins,30,Eating.csv
+2025-11-12,Subject,Leisure and Wellbeing,concept,Mental Grounding,Learning.csv
+2025-11-12,Person,Camille,duration,2.0,Messaging_Calling.csv
+2025-11-12,Game,Mario Galaxy 2,console,Switch 2,Gaming.csv
 2025-11-12,Drive,vape buying,duration,30,Driving.csv
 2025-11-12,Drive,vape buying,destination,savage vape shop,Driving.csv
-2025-11-12,Plan,Ryan/Jaana,duration,120.0,Socializing.csv
-2025-11-12,Plan,Ryan/Jaana,activity,Cock of Horse,Socializing.csv
-2025-11-12,Song,Outside Pt.1,duration,20.0,Music.csv
-2025-11-12,Biceps,General,rep_max,15.0,Workouts.csv
-2025-11-12,Song,Outside Pt.1,rating,8.0,Music.csv
-2025-11-12,Triceps,General,rep_min,12.0,Workouts.csv
-2025-11-12,Fixed,General,Teeth Brushed,0,Miscellaneous.csv
-2025-11-12,Fixed,General,Showers,1,Miscellaneous.csv
-2025-11-12,Fixed,General,Liters of Water Drank,6,Miscellaneous.csv
-2025-11-12,Drugs,Pregabalin,dosage,300,Miscellaneous.csv
-2025-11-12,Drugs,Pregabalin,notes,Good,Miscellaneous.csv
 2025-11-12,Game,Mario Galaxy 2,rating,9,Gaming.csv
-2025-11-12,Game,Mario Galaxy 2,console,Switch 2,Gaming.csv
-2025-11-12,Game,Mario Galaxy 2,duration,30,Gaming.csv
 2025-11-12,Biceps,General,rep_min,12.0,Workouts.csv
-2025-11-12,Project,personal_data_tracking,fixes,no issues,Coding Projects.csv
-2025-11-12,Triceps,General,exercises,2.0,Workouts.csv
-2025-11-12,Triceps,General,sets,7.0,Workouts.csv
+2025-11-12,Biceps,General,sets,7.0,Workouts.csv
+2025-11-12,Biceps,General,exercises,2.0,Workouts.csv
+2025-11-12,Shoulders,General,rep_max,15.0,Workouts.csv
+2025-11-12,Shoulders,General,rep_min,3.0,Workouts.csv
+2025-11-12,Shoulders,General,sets,20.0,Workouts.csv
+2025-11-12,Shoulders,General,exercises,4.0,Workouts.csv
 2025-11-12,Triceps,General,rep_max,15.0,Workouts.csv
-2025-11-13,Main Sleep,General,start,2:30,Sleep.csv
-2025-11-13,Project,personal_data_tracking,duration,360,Coding Projects.csv
-2025-11-13,Project,personal_data_tracking,changes,Added Visualizations. Pythonized Code. Updated Learning Window.,Coding Projects.csv
-2025-11-13,Plan,Evan/Kyle,activity,Chess,Socializing.csv
+2025-11-12,Triceps,General,rep_min,12.0,Workouts.csv
+2025-11-12,Triceps,General,sets,7.0,Workouts.csv
+2025-11-12,Triceps,General,exercises,2.0,Workouts.csv
+2025-11-12,Drive,vape buying,distance,3,Driving.csv
+2025-11-12,Project,personal_data_tracking,fixes,no issues,Coding Projects.csv
+2025-11-12,Project,personal_data_tracking,duration,300,Coding Projects.csv
+2025-11-12,Plan,Katee,activity,Cock of Horse,Socializing.csv
+2025-11-12,Plan,Katee,activity,Goodbye,Socializing.csv
+2025-11-12,Plan,Katee,duration,120.0,Socializing.csv
+2025-11-12,Plan,Katee,duration,20,Socializing.csv
+2025-11-12,Drugs,Seroquil (Night Time),notes,Good,Miscellaneous.csv
+2025-11-12,Drugs,Seroquil (Night Time),dosage,100,Miscellaneous.csv
+2025-11-12,Drugs,Pregabalin,notes,Good,Miscellaneous.csv
+2025-11-12,Drugs,Pregabalin,dosage,300,Miscellaneous.csv
+2025-11-12,Fixed,General,Liters of Water Drank,6,Miscellaneous.csv
+2025-11-12,Fixed,General,Showers,1,Miscellaneous.csv
+2025-11-12,Fixed,General,Teeth Brushed,0,Miscellaneous.csv
+2025-11-12,YouTube,The Most Dangerous Cognitive Bias,rating,94.0,Media.csv
+2025-11-12,YouTube,The Most Dangerous Cognitive Bias,duration,24.0,Media.csv
+2025-11-12,Project,personal_data_tracking,changes,"studied code, cleaned up data consolodation function",Coding Projects.csv
+2025-11-12,Person,Camille,duration,240,Messaging_Calling.csv
+2025-11-12,Biceps,General,rep_max,15.0,Workouts.csv
+2025-11-12,Song,Intro to Homewood,rating,8.0,Music.csv
+2025-11-12,Song,Intro to Homewood,duration,4.0,Music.csv
+2025-11-12,Song,Intro to Homewood,duration,20.0,Music.csv
+2025-11-12,Song,Intro to Homewood,rating,8,Music.csv
+2025-11-12,Song,Intro to Homewood,rating,6.0,Music.csv
+2025-11-12,Meditation,Mindfulness,duration,10,Meditating.csv
+2025-11-12,Person,Camille,context,Tech Issues,Messaging_Calling.csv
+2025-11-12,Person,Camille,context,Catchup/Philosophy/Psychology,Messaging_Calling.csv
+2025-11-12,Song,Intro to Homewood,rating,7.0,Music.csv
+2025-11-12,Song,Intro to Homewood,rating,7.0,Music.csv
+2025-11-12,Song,Intro to Homewood,rating,8.0,Music.csv
+2025-11-12,Game,Mario Galaxy 2,duration,30,Gaming.csv
+2025-11-12,Song,Intro to Homewood,duration,4.0,Music.csv
+2025-11-12,Song,Intro to Homewood,duration,3,Music.csv
+2025-11-12,Song,Intro to Homewood,duration,4.0,Music.csv
+2025-11-12,Song,Intro to Homewood,duration,4.0,Music.csv
 2025-11-13,Plan,Evan/Kyle,duration,50,Socializing.csv
-2025-11-13,Main Sleep,General,end,8:20,Sleep.csv
-2025-11-13,Subject,Occupational Therapy,subject,Psychology,Learning.csv
-2025-11-13,Subject,Occupational Therapy,concept,Return to Work Meeting,Learning.csv
-2025-11-13,Song,Outside Pt.1,rating,9,Music.csv
-2025-11-13,Song,Outside Pt.1,duration,60,Music.csv
-2025-11-13,Meals,"4 Sausages, 2 Hard Boiled Eggs, 1 Bowl of Vector Cereal",carbs,50,Eating.csv
-2025-11-13,Meals,"4 Sausages, 2 Hard Boiled Eggs, 1 Bowl of Vector Cereal",fats,45,Eating.csv
-2025-11-13,Meals,"4 Sausages, 2 Hard Boiled Eggs, 1 Bowl of Vector Cereal",proteins,40,Eating.csv
-2025-11-13,Meals,"Pasta with Marinara Sauce, 5 Meatballs, 2 cups of mushrooms",carbs,81,Eating.csv
-2025-11-13,Meals,"Pasta with Marinara Sauce, 5 Meatballs, 2 cups of mushrooms",fats,36,Eating.csv
-2025-11-13,Meals,"Pasta with Marinara Sauce, 5 Meatballs, 2 cups of mushrooms",proteins,44,Eating.csv
-2025-11-13,Meals,2 Chicken Fajitas with Cheese and 1 Bowl of Leak Soup,carbs,70,Eating.csv
+2025-11-13,Plan,Evan/Kyle,activity,Chess,Socializing.csv
 2025-11-13,Meals,2 Chicken Fajitas with Cheese and 1 Bowl of Leak Soup,fats,51,Eating.csv
-2025-11-13,Meals,2 Chicken Fajitas with Cheese and 1 Bowl of Leak Soup,proteins,70,Eating.csv
+2025-11-13,Song,Outside Pt.1,rating,9,Music.csv
+2025-11-13,Main Sleep,General,start,2:30,Sleep.csv
+2025-11-13,Main Sleep,General,end,8:20,Sleep.csv
+2025-11-13,Song,Outside Pt.1,duration,60,Music.csv
+2025-11-13,Project,personal_data_tracking,duration,360,Coding Projects.csv
 2025-11-13,Problem,General,duration,0,Leetcode.csv
-2025-11-13,Person,Ryan,context,Porn,Messaging_Calling.csv
-2025-11-13,Person,Ryan,duration,2.0,Messaging_Calling.csv
-2025-11-13,Subject,Occupational Therapy,duration,75.0,Learning.csv
+2025-11-13,Meals,2 Chicken Fajitas with Cheese and 1 Bowl of Leak Soup,carbs,70,Eating.csv
+2025-11-13,Meals,2 Chicken Fajitas with Cheese and 1 Bowl of Leak Soup,proteins,70,Eating.csv
+2025-11-13,Meals,"Pasta with Marinara Sauce, 5 Meatballs, 2 cups of mushrooms",proteins,44,Eating.csv
+2025-11-13,Meals,"Pasta with Marinara Sauce, 5 Meatballs, 2 cups of mushrooms",fats,36,Eating.csv
+2025-11-13,Meals,"Pasta with Marinara Sauce, 5 Meatballs, 2 cups of mushrooms",carbs,81,Eating.csv
+2025-11-13,Meals,"4 Sausages, 2 Hard Boiled Eggs, 1 Bowl of Vector Cereal",proteins,40,Eating.csv
+2025-11-13,Meals,"4 Sausages, 2 Hard Boiled Eggs, 1 Bowl of Vector Cereal",fats,45,Eating.csv
+2025-11-13,Meals,"4 Sausages, 2 Hard Boiled Eggs, 1 Bowl of Vector Cereal",carbs,50,Eating.csv
 2025-11-13,Main Sleep,General,duration,350,Sleep.csv
+2025-11-13,Person,Camille,duration,20,Messaging_Calling.csv
+2025-11-13,Project,personal_data_tracking,changes,Added Visualizations. Pythonized Code. Updated Learning Window.,Coding Projects.csv
+2025-11-13,Person,Camille,duration,5.0,Messaging_Calling.csv
+2025-11-13,Subject,Occupational Therapy,subject,Psychology,Learning.csv
+2025-11-13,Subject,Occupational Therapy,subject,Psychology,Learning.csv
+2025-11-13,Subject,Occupational Therapy,duration,60,Learning.csv
+2025-11-13,Subject,Occupational Therapy,duration,75.0,Learning.csv
+2025-11-13,Subject,Occupational Therapy,concept,"Self Care, Self Nurture, Self Compassion",Learning.csv
+2025-11-13,Subject,Occupational Therapy,concept,Return to Work Meeting,Learning.csv
+2025-11-13,Person,Camille,context,Crisis Management,Messaging_Calling.csv
+2025-11-13,Person,Camille,context,Sleep,Messaging_Calling.csv
+2025-11-13,Person,Camille,context,Porn,Messaging_Calling.csv
+2025-11-13,Person,Camille,duration,2.0,Messaging_Calling.csv
 2025-11-13,Main Sleep,General,quality,6,Sleep.csv

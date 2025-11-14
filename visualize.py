@@ -214,9 +214,7 @@ def visualize_daily_reports(master_df):
                 ax3.set_title(f"Meal & Snack Macro Table ({date})", pad=20)
                 plt.tight_layout()
                 pdf.savefig(fig3)
-                plt.close(fig3)
-              
-    print(all_daily_durations)  
+                plt.close(fig3) 
               
     # --- Weekly Reports ---
     weekly_folder = "reports/weekly_reports"
