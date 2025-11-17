@@ -1,6 +1,7 @@
-Date,Project A - name,Project A - duration,Project A - changes,Project A - fixes
-2025-11-10,personal_data_tracking,150,Added Date Selector and Modified Code to Update .csvs if data already entered for that date. Add row if data not entered.,More Date Entry Field to Top Center.
-2025-11-11,personal_data_tracking,300,Updated Date Entry Locations. Consolidated .csv data into one file for better analysis.,Bugs with data consolidation function.
-2025-11-12,personal_data_tracking,300,"studied code, cleaned up data consolodation function",no issues
-2025-11-13,personal_data_tracking,360,Added Visualizations. Pythonized Code. Updated Learning Window.,None
-2025-11-14,personal_data_tracking,30,Added Daily Data,None
+Date,Project A - name,Project A - duration,Project A - changes,Project A - fixes,Project B - name,Project B - duration,Project B - changes,Project B - fixes
+2025-11-10,personal_data_tracking,150,Added Date Selector and Modified Code to Update .csvs if data already entered for that date. Add row if data not entered.,More Date Entry Field to Top Center.,,,,
+2025-11-11,personal_data_tracking,300,Updated Date Entry Locations. Consolidated .csv data into one file for better analysis.,Bugs with data consolidation function.,,,,
+2025-11-12,personal_data_tracking,300,"studied code, cleaned up data consolodation function",no issues,,,,
+2025-11-13,personal_data_tracking,360,Added Visualizations. Pythonized Code. Updated Learning Window.,None,,,,
+2025-11-14,personal_data_tracking,30,Added Daily Data,None,,,,
+2025-11-15,personal_data_tracker,30,Added Data,None,knowledge_graph_builder,315,"Project Creating, Creating Repo, Basic Graph Building of Subject/Branch/Areas and Tree Branches/Connections using Streamlit",Module Importing Error
