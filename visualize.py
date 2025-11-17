@@ -233,7 +233,7 @@ def visualize_daily_reports(master_df):
         week_start = get_week_start(date_obj)
         week_key = week_start.strftime("%Y-%m-%d")
         grouped_weeks.setdefault(week_key, {})[date_obj] = day_durations
-
+    
     for week_start, week_days in grouped_weeks.items():
         # Aggregate totals
         weekly_totals = {}
@@ -244,56 +244,74 @@ def visualize_daily_reports(master_df):
         # Rank categories by total minutes
         ranked = sorted(weekly_totals.items(), key=lambda x: x[1], reverse=True)
         top3 = [c for c, _ in ranked[:4]]
-        mid = [c for c, _ in ranked[4:9]]
-        rest = [c for c, _ in ranked[9:]]
+        mid = [c for c, _ in ranked[4:8]]
+        rest = [c for c, _ in ranked[8:]]
     
-    def plot_group(categories, ax, title, day_map, monthly=False):
-        """Plot line chart for given categories across days in day_map."""
-        days = sorted(day_map.keys())
-        for cat in categories:
-            y = [day_map.get(day, {}).get(cat, 0) for day in days]
-            ax.plot(days, y, marker="o", label=cat)
-        ax.set_title(title)
-        ax.set_ylabel("Minutes")
-        ax.legend()
+        def plot_group(categories, ax, title, day_map, monthly=False):
+            """Plot line chart for given categories across days in day_map."""
+            days = sorted(day_map.keys())
+            for cat in categories:
+                y = [day_map.get(day, {}).get(cat, 0) for day in days]
+                ax.plot(days, y, marker="o", label=cat)
+            ax.set_title(title)
+            ax.set_ylabel("Minutes")
     
-        # Show fewer ticks if many days
-        step = max(1, len(days)//10)
-        ax.set_xticks(days[::step])
+            # Only add legend if something was plotted
+            handles, labels = ax.get_legend_handles_labels()
+            if handles:
+                ax.legend()
     
-        if monthly:
-            # Show actual date text (e.g. Nov 01, Nov 15)
-            ax.set_xticklabels([d.strftime("%b %d") for d in days[::step]], rotation=45)
-        else:
-            # Weekly: show weekday abbreviations (Sun, Mon, etc.)
-            ax.set_xticklabels([d.strftime("%a") for d in days[::step]], rotation=45)
+            # Show fewer ticks if many days
+            step = max(1, len(days)//10)
+            ax.set_xticks(days[::step])
     
-    fig, axes = plt.subplots(3, 1, figsize=(12, 18))
-    plot_group(top3, axes[0], "Top 3 Categories", week_days, monthly=False)
-    plot_group(mid, axes[1], "Ranked 4–8 Categories", week_days, monthly=False)
-    plot_group(rest, axes[2], "Remaining Categories", week_days, monthly=False)
+            if monthly:
+                ax.set_xticklabels([d.strftime("%b %d") for d in days[::step]], rotation=45)
+            else:
+                ax.set_xticklabels([d.strftime("%a") for d in days[::step]], rotation=45)
     
-    plt.tight_layout()
-    pdf_path = os.path.join("reports/weekly_reports", f"weekly_report_{week_start}.pdf")
-    plt.savefig(pdf_path)
-    plt.close()
+        # Line charts
+        fig, axes = plt.subplots(3, 1, figsize=(12, 18))
+        plot_group(top3, axes[0], "Top 3 Categories", week_days, monthly=False)
+        plot_group(mid, axes[1], "Ranked 4–8 Categories", week_days, monthly=False)
+        plot_group(rest, axes[2], "Remaining Categories", week_days, monthly=False)
+        plt.tight_layout()
+    
+        pdf_path = os.path.join(weekly_folder, f"weekly_report_{week_start}.pdf")
+        with PdfPages(pdf_path) as pdf:
+            pdf.savefig(fig)
+            plt.close(fig)
+    
+            # --- Weekly Pie Chart ---
+            fig_pie, ax_pie = plt.subplots(figsize=(8, 8))
+            ax_pie.pie(
+                weekly_totals.values(),
+                labels=weekly_totals.keys(),
+                autopct="%1.1f%%",
+                startangle=90,
+                textprops={"fontsize": 8}
+            )
+            ax_pie.set_title(f"Weekly Activity Breakdown (Week of {week_start})")
+            pdf.savefig(fig_pie)
+            plt.close(fig_pie)
+
     
     # --- Monthly Reports ---
-    
     monthly_dir = "reports/monthly_reports"
+    os.makedirs(monthly_dir, exist_ok=True)
+    
     def get_month_start(date, start_day=9):
-
         if not (1 <= start_day <= 28):
             raise ValueError("start_day must be between 1 and 28")
     
         # If the day of the month is >= start_day, month start is this month's start_day
-        if date_obj.day >= start_day:
-            return date_obj.replace(day=start_day)
+        if date.day >= start_day:
+            return date.replace(day=start_day)
         else:
             # Otherwise, month start is the previous month's start_day
-            prev_month = date_obj.month - 1 or 12
-            prev_year = date_obj.year if date_obj.month > 1 else date_obj.year - 1
-            return date(prev_year, prev_month, start_day)
+            prev_month = date.month - 1 or 12
+            prev_year = date.year if date.month > 1 else date.year - 1
+            return date.replace(year=prev_year, month=prev_month, day=start_day)
     
     grouped_months = {}
     for date_str, day_durations in all_daily_durations.items():
@@ -307,17 +325,34 @@ def visualize_daily_reports(master_df):
         for day, durations in month_days.items():
             for cat, mins in durations.items():
                 monthly_totals[cat] = monthly_totals.get(cat, 0) + mins
+    
         ranked = sorted(monthly_totals.items(), key=lambda x: x[1], reverse=True)
         top3 = [c for c, _ in ranked[:4]]
         mid = [c for c, _ in ranked[4:8]]
         rest = [c for c, _ in ranked[8:]]
     
+        # Line charts
         fig, axes = plt.subplots(3, 1, figsize=(12, 18))
         plot_group(top3, axes[0], "Top 3 Categories", month_days, monthly=True)
         plot_group(mid, axes[1], "Ranked 4–8 Categories", month_days, monthly=True)
         plot_group(rest, axes[2], "Remaining Categories", month_days, monthly=True)
-    
         plt.tight_layout()
+    
         pdf_path = os.path.join(monthly_dir, f"monthly_report_{month_start}.pdf")
-        plt.savefig(pdf_path)
-        plt.close()
+        with PdfPages(pdf_path) as pdf:
+            pdf.savefig(fig)
+            plt.close(fig)
+    
+            # Pie chart
+            fig_pie, ax_pie = plt.subplots(figsize=(8, 8))
+            ax_pie.pie(
+                monthly_totals.values(),
+                labels=monthly_totals.keys(),
+                autopct="%1.1f%%",
+                startangle=90,
+                textprops={"fontsize": 8}
+            )
+            ax_pie.set_title(f"Monthly Activity Breakdown (Starting {month_start})")
+            pdf.savefig(fig_pie)
+            plt.close(fig_pie)
+

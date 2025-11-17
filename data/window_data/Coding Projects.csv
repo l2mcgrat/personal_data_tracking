@@ -5,3 +5,4 @@ Date,Project A - name,Project A - duration,Project A - changes,Project A - fixes
 2025-11-13,personal_data_tracking,360,Added Visualizations. Pythonized Code. Updated Learning Window.,None,,,,
 2025-11-14,personal_data_tracking,30,Added Daily Data,None,,,,
 2025-11-15,personal_data_tracker,30,Added Data,None,knowledge_graph_builder,315,"Project Creating, Creating Repo, Basic Graph Building of Subject/Branch/Areas and Tree Branches/Connections using Streamlit",Module Importing Error
+2025-11-16,personal_data_tracking,60,added monthly report,"missing data, old column names",,,,

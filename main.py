@@ -192,7 +192,6 @@ class CategorySelector:
 
 from consolidate import consolidate_data
 from visualize import visualize_daily_reports
-import pandas as pd
 
 def function_caller():
     # Generate master_log.csv
