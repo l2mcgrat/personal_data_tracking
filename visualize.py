@@ -18,7 +18,7 @@ media_dict = {
     "Gachiakuta": ["Classic Shonen", "Anime"],
     "One Punch Man": ["Seinen", "Anime"],
     "Kuroko": ["Sports Shonen", "Anime"],
-    "IO":["Idoled Out", "Reality TV"],
+    "Idoled Out":["Idoled Out", "Reality TV"],
     "Shorts":["Shorts", "Shorts"],
     "Music": ["Music","Music"],
     "AIM": ["Anime in Minutes", "Anime"],
@@ -28,7 +28,6 @@ media_dict = {
     "Nintendo": ["Nintendo", "Gaming"],
     "NBA": ["Basketball", "Sports"],
     "Ethanimale": ["Big Brother", "Reality TV"],
-    "Other": ["Other","Other"],
     "HHM": ["Hip Hop Madness", "Music"],
     "Xevi": ["Xevi", "Current Events"],
     "RWJ": ["Ray William Johnson", "Life"],
@@ -39,7 +38,7 @@ media_dict = {
     "Tier Zoo": ["Tier Zoo", "Science"],
     "RTwBM": ["Bill Maher", "Current Events"],
     "Shawn Cee": ["Shawn Cee", "Music"],
-    "EE": ["Economics Explained", "Science"],
+    "Economics Explained": ["Economics Explained", "Science"],
     "Hank Green": ["Hank Green", "Current Events"],
     "Branch Education": ["Branch Education", "Science"],
     "Alenxander Bromley": ["Alexander Bromley", "Science"],
@@ -142,14 +141,6 @@ def visualize_reports(master_df):
             ax1.set_title(f"Daily Activity Breakdown ({date})")
             pdf.savefig(fig1)
             plt.close(fig1)
-
-            # --- Daily Media Pie Chart ---
-            media_counts = {}
-            for src, val in activity.groupby("Source")["Value"].sum().items():
-                name, category = classify_media(src, media_dict)
-                if category:
-                    media_counts[category] = media_counts.get(category, 0) + val
-            plot_media_pie(media_counts, f"Daily Media Breakdown ({date})", pdf)
 
             # --- Meals Pie Charts and Tables ---
             meals = group[group["Category"].str.lower().isin(["meals", "snacks"])]
@@ -285,6 +276,27 @@ def visualize_reports(master_df):
                 plt.tight_layout()
                 pdf.savefig(fig3)
                 plt.close(fig3) 
+                
+            # --- Daily Media Pie Charts ---
+            media_counts_by_category = {}
+            media_counts_by_name = {}
+            
+            # Filter to duration rows and ensure numeric
+            media_group = group[group["Metric"].str.lower() == "duration"].copy()
+            media_group["Value"] = pd.to_numeric(media_group["Value"], errors="coerce")
+            
+            # Aggregate by Subtype (the key field for media_dict)
+            for subtype, val in media_group.groupby("Subtype")["Value"].sum().items():
+                if pd.isna(val) or val == 0:
+                    continue
+                name, category = classify_media(subtype, media_dict)
+                if category:
+                    media_counts_by_category[category] = media_counts_by_category.get(category, 0) + float(val)
+                if name:
+                    media_counts_by_name[name] = media_counts_by_name.get(name, 0) + float(val)
+            
+            plot_media_pie(media_counts_by_category, f"Daily Media Breakdown by Category ({date})", pdf)
+            plot_media_pie(media_counts_by_name, f"Daily Media Breakdown by Name ({date})", pdf)
               
     # --- Weekly Reports ---
     weekly_folder = "reports/weekly_reports"
@@ -362,14 +374,27 @@ def visualize_reports(master_df):
             pdf.savefig(fig_pie)
             plt.close(fig_pie)
             
-            # --- Weekly Media Pie Chart ---
-            weekly_media_counts = {}
-            for src, mins in weekly_totals.items():
-                name, category = classify_media(src, media_dict)
+            # --- Weekly Media Pie Charts ---
+            weekly_media_counts_by_category = {}
+            weekly_media_counts_by_name = {}
+            
+            # Collect rows belonging to the week and filter to duration
+            week_group = master_df[master_df["Date"].dt.date.isin(week_days.keys())].copy()
+            week_group = week_group[week_group["Metric"].str.lower() == "duration"]
+            week_group["Value"] = pd.to_numeric(week_group["Value"], errors="coerce")
+            
+            for subtype, val in week_group.groupby("Subtype")["Value"].sum().items():
+                if pd.isna(val) or val == 0:
+                    continue
+                name, category = classify_media(subtype, media_dict)
                 if category:
-                    weekly_media_counts[category] = weekly_media_counts.get(category, 0) + mins
-            plot_media_pie(weekly_media_counts, f"Weekly Media Breakdown (Week of {week_start})", pdf)
-    
+                    weekly_media_counts_by_category[category] = weekly_media_counts_by_category.get(category, 0) + float(val)
+                if name:
+                    weekly_media_counts_by_name[name] = weekly_media_counts_by_name.get(name, 0) + float(val)
+            
+            plot_media_pie(weekly_media_counts_by_category, f"Weekly Media Breakdown by Category (Week of {week_start})", pdf)
+            plot_media_pie(weekly_media_counts_by_name, f"Weekly Media Breakdown by Name (Week of {week_start})", pdf)
+            
     # --- Monthly Reports ---
     monthly_dir = "reports/monthly_reports"
     os.makedirs(monthly_dir, exist_ok=True)
@@ -430,12 +455,25 @@ def visualize_reports(master_df):
             pdf.savefig(fig_pie)
             plt.close(fig_pie)
             
-            # --- Monthly Media Pie Chart ---
-            monthly_media_counts = {}
-            for src, mins in monthly_totals.items():
-                name, category = classify_media(src, media_dict)
+            # --- Monthly Media Pie Charts ---
+            monthly_media_counts_by_category = {}
+            monthly_media_counts_by_name = {}
+            
+            # Collect rows for the month and filter to duration
+            month_group = master_df[master_df["Date"].dt.date.isin(month_days.keys())].copy()
+            month_group = month_group[month_group["Metric"].str.lower() == "duration"]
+            month_group["Value"] = pd.to_numeric(month_group["Value"], errors="coerce")
+            
+            for subtype, val in month_group.groupby("Subtype")["Value"].sum().items():
+                if pd.isna(val) or val == 0:
+                    continue
+                name, category = classify_media(subtype, media_dict)
                 if category:
-                    monthly_media_counts[category] = monthly_media_counts.get(category, 0) + mins
-            plot_media_pie(monthly_media_counts, f"Monthly Media Breakdown (Starting {month_start})", pdf)
+                    monthly_media_counts_by_category[category] = monthly_media_counts_by_category.get(category, 0) + float(val)
+                if name:
+                    monthly_media_counts_by_name[name] = monthly_media_counts_by_name.get(name, 0) + float(val)
+            
+            plot_media_pie(monthly_media_counts_by_category, f"Monthly Media Breakdown by Category (Starting {month_start})", pdf)
+            plot_media_pie(monthly_media_counts_by_name, f"Monthly Media Breakdown by Name (Starting {month_start})", pdf)
 
 
