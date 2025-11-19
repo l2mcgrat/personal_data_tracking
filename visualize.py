@@ -10,7 +10,66 @@ import matplotlib.colors as mcolors
 from matplotlib.backends.backend_pdf import PdfPages
 import pandas as pd
 
-def visualize_daily_reports(master_df):
+# --- Media Dictionary ---
+media_dict = {
+    "BDE": ["Baseball Doesn't Exist","Sports"],
+    "Big A": ["Atrioc", "Current Events"],
+    "LASSI": ["LASSI", "Sports"],
+    "Gachiakuta": ["Classic Shonen", "Anime"],
+    "One Punch Man": ["Seinen", "Anime"],
+    "Kuroko": ["Sports Shonen", "Anime"],
+    "IO":["Idoled Out", "Reality TV"],
+    "Shorts":["Shorts", "Shorts"],
+    "Music": ["Music","Music"],
+    "AIM": ["Anime in Minutes", "Anime"],
+    "TDS": ["The Daily Show","Current Events"],
+    "Veritasium": ["Veritasium", "Science"],
+    "JHR": ["Jimmy High Roller", "Sports"],
+    "Nintendo": ["Nintendo", "Gaming"],
+    "NBA": ["Basketball", "Sports"],
+    "Ethanimale": ["Big Brother", "Reality TV"],
+    "Other": ["Other","Other"],
+    "HHM": ["Hip Hop Madness", "Music"],
+    "Xevi": ["Xevi", "Current Events"],
+    "RWJ": ["Ray William Johnson", "Life"],
+    "VGD": ["Video Game Dunkey", "Gaming"],
+    "SJJ": ["Solid JJ", "Comedy"],
+    "Gigguk": ["Gigguk", "Anime"],
+    "JA": ["Jaden Animations", "Life"],
+    "Tier Zoo": ["Tier Zoo", "Science"],
+    "RTwBM": ["Bill Maher", "Current Events"],
+    "Shawn Cee": ["Shawn Cee", "Music"],
+    "EE": ["Economics Explained", "Science"],
+    "Hank Green": ["Hank Green", "Current Events"],
+    "Branch Education": ["Branch Education", "Science"],
+    "Alenxander Bromley": ["Alexander Bromley", "Science"],
+    "CGP": ["CGP Grey", "Science"],
+    "poi": ["poi", "Science"]
+}
+
+def classify_media(title, media_dict):
+    for key, (name, category) in media_dict.items():
+        if key.lower() in str(title).lower():
+            return name, category
+    return None, None
+
+def plot_media_pie(data_dict, title, pdf):
+    if not data_dict:
+        return
+    fig, ax = plt.subplots(figsize=(8, 8))
+    ax.pie(
+        data_dict.values(),
+        labels=data_dict.keys(),
+        autopct="%1.1f%%",
+        startangle=90,
+        textprops={"fontsize": 8}
+    )
+    ax.set_title(title)
+    pdf.savefig(fig)
+    plt.close(fig)
+
+def visualize_reports(master_df):
+    
     output_dir="reports/daily_reports"
     os.makedirs(output_dir, exist_ok=True)
 
@@ -83,6 +142,14 @@ def visualize_daily_reports(master_df):
             ax1.set_title(f"Daily Activity Breakdown ({date})")
             pdf.savefig(fig1)
             plt.close(fig1)
+
+            # --- Daily Media Pie Chart ---
+            media_counts = {}
+            for src, val in activity.groupby("Source")["Value"].sum().items():
+                name, category = classify_media(src, media_dict)
+                if category:
+                    media_counts[category] = media_counts.get(category, 0) + val
+            plot_media_pie(media_counts, f"Daily Media Breakdown ({date})", pdf)
 
             # --- Meals Pie Charts and Tables ---
             meals = group[group["Category"].str.lower().isin(["meals", "snacks"])]
@@ -294,7 +361,14 @@ def visualize_daily_reports(master_df):
             ax_pie.set_title(f"Weekly Activity Breakdown (Week of {week_start})")
             pdf.savefig(fig_pie)
             plt.close(fig_pie)
-
+            
+            # --- Weekly Media Pie Chart ---
+            weekly_media_counts = {}
+            for src, mins in weekly_totals.items():
+                name, category = classify_media(src, media_dict)
+                if category:
+                    weekly_media_counts[category] = weekly_media_counts.get(category, 0) + mins
+            plot_media_pie(weekly_media_counts, f"Weekly Media Breakdown (Week of {week_start})", pdf)
     
     # --- Monthly Reports ---
     monthly_dir = "reports/monthly_reports"
@@ -355,4 +429,13 @@ def visualize_daily_reports(master_df):
             ax_pie.set_title(f"Monthly Activity Breakdown (Starting {month_start})")
             pdf.savefig(fig_pie)
             plt.close(fig_pie)
+            
+            # --- Monthly Media Pie Chart ---
+            monthly_media_counts = {}
+            for src, mins in monthly_totals.items():
+                name, category = classify_media(src, media_dict)
+                if category:
+                    monthly_media_counts[category] = monthly_media_counts.get(category, 0) + mins
+            plot_media_pie(monthly_media_counts, f"Monthly Media Breakdown (Starting {month_start})", pdf)
+
 

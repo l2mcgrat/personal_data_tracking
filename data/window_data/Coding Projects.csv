@@ -6,3 +6,5 @@ Date,Project A - name,Project A - duration,Project A - changes,Project A - fixes
 2025-11-14,personal_data_tracking,30,Added Daily Data,None,,,,
 2025-11-15,personal_data_tracker,30,Added Data,None,knowledge_graph_builder,315,"Project Creating, Creating Repo, Basic Graph Building of Subject/Branch/Areas and Tree Branches/Connections using Streamlit",Module Importing Error
 2025-11-16,personal_data_tracking,60,added monthly report,"missing data, old column names",,,,
+2025-11-17,personal_data_tracking,45,added weekly and monthly visualizations,none,,,,
+2025-11-18,personal_data_tracking,200,"added media pie charts, cleaned up media.csv data",media.csv data,,,,

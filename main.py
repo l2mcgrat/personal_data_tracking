@@ -191,7 +191,7 @@ class CategorySelector:
             self.root.quit()
 
 from consolidate import consolidate_data
-from visualize import visualize_daily_reports
+from visualize import visualize_reports
 
 def function_caller():
     # Generate master_log.csv
@@ -202,7 +202,7 @@ def function_caller():
     master_df["Date"] = pd.to_datetime(master_df["Date"], errors="coerce")
     
     # Call visualization generator functions
-    visualize_daily_reports(master_df)
+    visualize_reports(master_df)
 
 # Run the app
 if __name__ == "__main__":
