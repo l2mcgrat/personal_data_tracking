@@ -41,8 +41,8 @@ class CategorySelector:
         # Center window and set to half screen
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
-        window_width = screen_width // 2
-        window_height = screen_height // 2
+        window_width = int(screen_width*(2/3))
+        window_height = int(screen_height*(2/3))
         x = (screen_width - window_width) // 2
         y = (screen_height - window_height) // 2
         root.geometry(f"{window_width}x{window_height}+{x}+{y}")
