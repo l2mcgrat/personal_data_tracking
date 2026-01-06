@@ -71,6 +71,24 @@ def visualize_reports(master_df):
     
     output_dir="reports/daily_reports"
     os.makedirs(output_dir, exist_ok=True)
+    
+    # Load work summary file safely
+    work_file = "data/window_data/Work_Day.csv"
+    
+    if os.path.exists(work_file):
+        work_df = pd.read_csv(work_file)
+    
+        # Normalize column names
+        work_df.columns = work_df.columns.str.strip().str.lower()
+    
+        # Ensure date column exists and is datetime
+        if "date" in work_df.columns:
+            work_df["date"] = pd.to_datetime(work_df["date"], errors="coerce")
+        else:
+            work_df["date"] = pd.NaT
+    else:
+        # Empty fallback if file doesn't exist yet
+        work_df = pd.DataFrame({"date": []})
 
     all_daily_durations = {}
 
