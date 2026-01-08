@@ -12,3 +12,4 @@ Date,Project A - name,Project A - duration,Project A - changes,Project A - fixes
 2025-11-21,pandas_projects,30,pulled in matchup data,name errors,,,,
 2025-11-22,personal_data_tracking,130,entering in for days sick,none,,,,
 2026-01-06,Personal Data Tracking,60,Work Time Wasn't Added. Needed to send the data to Delise.,Make Work Day More Like Other Windows,,,,
+2026-01-07,Personal Data Tracking,90,Added 2 Days of Data,Fix Issue with Work Calculation,Hobby Wheel,170,Made a Wheel to Pick my Hobby(s) for the Day.The probability of the hobby repeating decreases when it lands on it.,Lots of manual fixes to the AI Generated Code
