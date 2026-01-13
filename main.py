@@ -48,7 +48,7 @@ class CategorySelector:
         root.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
         # Fonts
-        header_font = ("Helvetica", 18, "bold")
+        header_font = ("Helvetica", 18, "bold") 
         checkbox_font = ("Helvetica", 14)
 
         # Map all categories to their window classes
