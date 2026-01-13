@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Date,Block A - type,Block A - duration,Block A - notes,Block B - type,Block B - duration,Block B - notes,Block C - type,Block C - duration,Block C - notes
 2026-01-05,Meetings,120,Nothing,Idling,30,Waiting,Projects,90,Grinding
 2026-01-06,Business IT Course,240,Good Course,Discussion,30,Good Teammate,,,
@@ -5,3 +6,10 @@ Date,Block A - type,Block A - duration,Block A - notes,Block B - type,Block B - 
 2026-01-08,Research,90,Re-Assuring,Project,120,Good,Learning,30,Tech and Business
 2026-01-09,Meeting,120,Good,Learning,60,Good,Misc,60,Good
 2026-01-12,Learning,210,Good,Project,240,Grind,,,
+=======
+Date,Block A - type,Block A - duration,Block A - notes,Block B - type,Block B - duration,Block B - notes,Block C - type,Block C - duration,Block C - notes,Block D - type,Block D - duration,Block D - notes,Block E - type,Block E - duration,Block E - notes
+1/5/2026,Meetings,120,Nothing,Idling,30,Waiting,Projects,90,Grinding,,,,,,
+1/6/2026,Business IT Course,240,Good Course,Discussion,30,Good Teammate,,,,,,,,,
+1/7/2026,Meetings,70,Chaotic,Research,60,Engaging,Troubleshooting,30,Annoying,In-Person Meeting,30,Solid,Notes,50,Good
+2026-01-07,Online Learning Business-IT Relations,60,Insightful,Working Meeting,195,We Got Stuff Done,,,,,,,,,
+>>>>>>> 0303ecc7126894b09d5ce0d0255326df7d9e1da8

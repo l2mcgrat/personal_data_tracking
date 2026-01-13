@@ -29,7 +29,6 @@ from windows.socializing_window import SocializingWindow
 from windows.eating_window import EatingWindow
 from windows.media_window import MediaWindow
 from windows.miscellaneous_window import MiscellaneousWindow
-
 from windows.dummy_window import DummyWindow
 
 class CategorySelector:
