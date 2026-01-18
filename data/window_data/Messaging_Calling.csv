@@ -1,14 +1,17 @@
-Date,Person A - person,Person A - duration,Person A - context,Person B - person,Person B - duration,Person B - context,Person C - person,Person C - duration,Person C - context
-2025-11-10,Dani,5,Politics/Catchup,Ryan,1,Chit Chat,Katee,1,Chess Planning
-2025-11-09,Mom,10,Stuff I Already Talked About,,,,,,
-2025-11-11,Mom,8,Catchup,Catherine Germaine,30,Return to Work,,,
-2025-11-12,Camille,240,Catchup/Philosophy/Psychology,Mom,2,Tech Issues,,,
-2025-11-13,Camille,20,Crisis Management,Owen,5,Sleep,Ryan,2,Porn
-2025-11-15,Ryan,2,Porn,,,,,,
-2025-11-16,Owen,2,Deadass/Sleep,,,,,,
-2025-11-17,Logan,10,Fab Engineering/Catchup,Owen,10,Catchup,Keenan,2,Basketball
-2025-11-18,Mom,60,Pickup Plan/Catchup,Owen,5,Catchup,Katee,5,Catchup
-2025-11-19,Ryan,10,Jesse Death,Owen,240,Catchup/Relationships,,,
-2025-11-20,LTD,70,Return to Work,Logan and Calena,250,Catchup/Europe Questions,,,
-2026-01-06,Michelle B,40,Return to Work,Delise R,30,OT and RTW,,,
-2026-01-08,Mom,15,AirBnB,Michelle Beaty,45,Return to Work,,,
+Date,Person A - person,Person A - duration,Person A - context,Person B - person,Person B - duration,Person B - context,Person C - person,Person C - duration,Person C - context,Person D - person,Person D - duration,Person D - context,Person E - person,Person E - duration,Person E - context
+2025-11-10,Dani,5,Politics/Catchup,Ryan,1,Chit Chat,Katee,1,Chess Planning,,,,,,
+2025-11-09,Mom,10,Stuff I Already Talked About,,,,,,,,,,,,
+2025-11-11,Mom,8,Catchup,Catherine Germaine,30,Return to Work,,,,,,,,,
+2025-11-12,Camille,240,Catchup/Philosophy/Psychology,Mom,2,Tech Issues,,,,,,,,,
+2025-11-13,Camille,20,Crisis Management,Owen,5,Sleep,Ryan,2,Porn,,,,,,
+2025-11-15,Ryan,2,Porn,,,,,,,,,,,,
+2025-11-16,Owen,2,Deadass/Sleep,,,,,,,,,,,,
+2025-11-17,Logan,10,Fab Engineering/Catchup,Owen,10,Catchup,Keenan,2,Basketball,,,,,,
+2025-11-18,Mom,60,Pickup Plan/Catchup,Owen,5,Catchup,Katee,5,Catchup,,,,,,
+2025-11-19,Ryan,10,Jesse Death,Owen,240,Catchup/Relationships,,,,,,,,,
+2025-11-20,LTD,70,Return to Work,Logan and Calena,250,Catchup/Europe Questions,,,,,,,,,
+2026-01-06,Michelle B,40,Return to Work,Delise R,30,OT and RTW,,,,,,,,,
+2026-01-08,Mom,15,AirBnB,Michelle Beaty,45,Return to Work,,,,,,,,,
+2026-01-14,Mom,20,Cacthup,Alliance Monitoring,20,Device Setup,,,,,,,,,
+2026-01-15,Mom,45,Planning,Alliance Monitoring,20,Planning,Canada Life,20,Planning,Camille,10,Website,Owen,30,Catchup
+2026-01-16,Alliance Monitoring,40,Device Setup,Camille,20,Website Planning,,,,,,,,,
